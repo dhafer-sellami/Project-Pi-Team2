@@ -2,12 +2,17 @@
 
 {% block title %}Edit Ordonance{% endblock %}
 
-{% block body %}
-    <h1>Edit Ordonance</h1>
+{% block section %}
+   <section class="book" id="book">
+        <h1 class="heading"><span>book</span> now</h1>
+        <div class="row">
 
     {{ include('ordonance/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_ordonance_index') }}">back to list</a>
 
     {{ include('ordonance/_delete_form.html.twig') }}
+
+     </div>
+    </section>
 {% endblock %}

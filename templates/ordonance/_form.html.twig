@@ -1,4 +1,35 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form) }}  
+    {{ form_widget(form.date, {'attr': {'type':'date','class': 'box','placeholder':'name'}}) }}
+    {{ form_widget(form.notice, {'attr': {'class': 'box','placeholder':'Notice'}}) }}
+   
+     <input type="text" id="medicament-search" class="box" placeholder="Search Medicaments...">
+    <div id="medicament-container">
+       {{ form_widget(form.medicaments, {'attr': {'class': 'box'}}) }}
+    </div>
+   
+   
+    {{ form_widget(form.save,{'label':'Ajouter','attr':{'class':'btn'}})}}
+    <a href="{{ path('app_ordonance_index') }}" class="btn">back to list</a>
 {{ form_end(form) }}
+
+<script>
+    document.getElementById('medicament-search').addEventListener('keyup', function() {
+        let filter = this.value.toLowerCase();
+        let checkboxes = document.querySelectorAll('#medicament-container input[type="checkbox"]');
+
+        checkboxes.forEach(function(checkbox) {
+            let label = checkbox.nextElementSibling; // Get the label next to the checkbox
+
+            if (label) {
+                let text = label.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    checkbox.style.display = "inline-block"; // Show checkbox
+                    label.style.display = "inline-block";   // Show label
+                } else {
+                    checkbox.style.display = "none"; // Hide checkbox
+                    label.style.display = "none";   // Hide label
+                }
+            }
+        });
+    });
+</script>

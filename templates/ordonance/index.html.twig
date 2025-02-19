@@ -2,36 +2,88 @@
 
 {% block title %}Ordonance index{% endblock %}
 
-{% block body %}
-    <h1>Ordonance index</h1>
+{% block section %}
+    <section class="home-ordonance" id="ordonnance">
+        <h1 class="heading"><span>Liste des</span> Ordonnances</h1>
 
-    <table class="table">
-        <thead>
+        <div class="search-container" style="margin-bottom: 20px; display: flex;justify-content:center; width: 100%;">
+        <input class="box" type="date" id="search-date">
+        <button class="btn" onclick="filterOrdonnances()">Rechercher</button>
+        </div>
+
+        <div class="table-container scrollable-container" style="width: max-content;">
+
+         <!-- Ordonnance Card 1 -->
+         {% for ordonance in ordonances %}
+            <div class="card-container">
+                <div class="box">
+                    <h3>Ordonnance #{{ ordonance.id }}</h3>
+                    <p><strong>ID Patient:</strong> {{ ordonance.patientId }}</p>
+                    <p id="ord-date"><strong>Date de Création:</strong> {{ ordonance.date | date('d-m-Y') }}</p>
+                    <p><strong>Notice:</strong> {{ ordonance.notice }}</p>
+                    <table class="medication-table">
+                        <thead>
+                            <tr>
+                                <th>Nom du Médicament</th>
+                                <th>Durée de Consommation</th>
+                                <th>Catégorie</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for medicament in ordonance.medicaments %}
+                            <tr>
+                                <td>{{medicament.name}}</td>
+                                <td>{{medicament.duration}}</td>
+                                <td>{{medicament.category}}</td>
+                                <td>{{medicament.description}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                <a href="{{ path('app_ordonance_show', {'id': ordonance.id}) }}" class="btn">show</a>
+                <a href="{{ path('app_ordonance_edit', {'id': ordonance.id}) }}" class="btn">edit</a>
+                </div>
+            </div>
+
+             {% else %}
             <tr>
-                <th>Id</th>
-                <th>Notice</th>
-                <th>Date</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ordonance in ordonances %}
-            <tr>
-                <td>{{ ordonance.id }}</td>
-                <td>{{ ordonance.notice }}</td>
-                <td>{{ ordonance.date ? ordonance.date|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_ordonance_show', {'id': ordonance.id}) }}">show</a>
-                    <a href="{{ path('app_ordonance_edit', {'id': ordonance.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+            <!--end table-->
 
-    <a href="{{ path('app_ordonance_new') }}">Create new</a>
+        </div>
+        <div class="search-container" style="margin-bottom: 20px; display: flex;justify-content:center; width: 100%;">
+        <a href="{{ path('app_ordonance_new') }}" class="btn">Create new</a>
+        </div>
+        
+    </section>
+
+
+<script>
+   function filterOrdonnances() {
+    const selectedDate = document.getElementById('search-date').value;
+    const cards = document.querySelectorAll('.card-container');
+
+    cards.forEach(card => {
+        const ordonanceDate = card.querySelector('#ord-date').textContent.trim();
+        const formattedDate = ordonanceDate.match(/\d{2}-\d{2}-\d{4}/)?.[0]; // Extract date in 'dd-mm-yyyy' format
+        const isoDate = formattedDate 
+            ? formattedDate.split('-').reverse().join('-') 
+            : null; // Convert to 'yyyy-mm-dd'
+
+        if (selectedDate === isoDate || selectedDate === '') {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+</script>
+
 {% endblock %}
+
