@@ -5,32 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicare | Hospital Website</title> 
-    <!-- Page Icon -->
+    
      <link rel="shortcut icon" href="{{ asset('Frontoffice/image/heartbeat-solid.svg') }}" type="image/x-icon">   
-    <!-- font-awesome -->
-    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css') }} ">
-    <!-- Custom Css File Link -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <link rel="stylesheet" href="{{ asset('Frontoffice/css/style.css') }}">
 </head>
 <body>
-    <!-- Header Section Starts -->
+
     <div class="header">
-        <a href="#" class="logo"><i class="fas fa-heartbeat"></i> medcare.</a>
+        <a href="#" class="logo"><i class="fas fa-heartbeat"></i> MediTrack.</a>
         <nav class="navbar">
-            <a href="#home">home</a>
-            <a href="#services">services</a>
+            <a href="#home">Home</a>
+            {# <a href="#services">services</a> #}
             <a href="#about">about</a>
             <a href="#doctors">doctors</a>
-            <a href="#book">book</a>
-            <a href="#review">review</a>
-            <a href="#blogs">blogs</a>
+            <a href="#book">book an appointment</a>
+            <a href="#review">Sign in</a>    
+            <a href="#blogs">Sign up</a>
         </nav>
         <div id="menu-btn" class="fas fa-bars"></div>
     </div>
-    <!-- Header Section End -->
-
-    <!-- Home Section starts -->
-    <section class="home" id="home">
+    
+    {# <section class="home" id="home">
         <div class="image">
             <img src="{{ asset('Frontoffice/image/home-img.svg') }}" alt="home-img.svg">
         </div>
@@ -40,9 +38,7 @@
             <a href="#" class="btn">contact us <span class="fas fa-chevron-right"></span> </a>
         </div>
     </section>
-    <!-- Home Section End -->
-
-    <!-- icons section starts  -->
+  
     <section class="icons-container">
         <div class="icons">
             <i class="fas fa-user-md"></i>
@@ -312,11 +308,9 @@
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Blogs section End -->
-
-    <!-- Footer section Starts  -->
-    <section class="footer">
+    </section> #}
+    
+    {# <section class="footer">
         <div class="box-container">
             <div class="box">
                 <h3>quick links</h3>
@@ -356,8 +350,8 @@
             </div>
         </div>
         <div class="credit">created by <span>zaki chowdhury</span> | all right reserved</div>
-    </section>
-    <!-- Footer section End  -->
+    </section> #}
+    
 
 
 
@@ -369,7 +363,7 @@
 
 
 
-    <!-- custom js file link  -->
+    
     <script src="{{ asset('Frontoffice/js/script.js') }}"></script>
 </body>
 </html>

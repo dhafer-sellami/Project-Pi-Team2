@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealEstate</title>
-    <!-- font-awesome -->
-    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css') }}"/>
-    <!-- Page Icon -->
+    <title>Dashboard</title>
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}"/>
+    
     <link rel="shortcut icon" href="{{ asset('Backoffice/images/s-1.png') }}" type="image/x-icon">
-    <!-- Custom Css Linl -->
+    
     <link rel="stylesheet" href="{{ asset('Backoffice/css/style.css') }}">
 </head>
 <body>
-    <!-- header section starts -->
+    
     <header>
-        <a href="#" class="logo"><span>real</span>Estate</a>
+        <a href="#" class="logo"><span>Admin</span>Dashboard</a>
         <nav class="navbar">
             <a href="#home">home</a>
-            <a href="#services">services</a>
-            <a href="#featured">featured</a>
+            <a href="#services">List of users</a>
+            {# <a href="#featured">featured</a>
             <a href="#agents">agents</a>
-            <a href="#contact">contact</a>
+            <a href="#contact">contact</a> #}
         </nav>
         <div class="icons">
             <div id="menu-bars" class="fas fa-bars"></div>
@@ -29,10 +29,8 @@
             <a href="#" class="fas fa-user"></a>
         </div>
     </header>
-    <!-- header section End -->
-
-    <!-- Home section Starts -->
-    <section class="home" id="home">
+   
+    {# <section class="home" id="home">
         <form action="">
             <h3>find your parfect home</h3>
             <div class="buttons-container">
@@ -110,9 +108,7 @@
             <input type="submit" value="seach property" class="btn">
         </form>
     </section>
-    <!-- Home section End -->
-
-    <!-- Service section starts -->
+    
     <section class="services" id="services">
         <h1 class="heading">our <span>services</span></h1>
         <div class="box-container">
@@ -136,9 +132,7 @@
             </div>
         </div>
     </section>
-    <!-- Service section End -->
-
-    <!-- Featured section Start -->
+    
     <section class="featured" id="featured">
         <h3 class="heading"><span>featured</span> properties</h3>
         <div class="box-container">
@@ -348,9 +342,7 @@
             </div>           
         </div>
     </section>
-    <!-- Featured section End -->
-
-    <!-- Agents section Start -->
+    
     <section class="agents" id="agents">
         <h3 class="heading">professional <span>agents</span></h3>
         <div class="box-container">
@@ -408,9 +400,7 @@
             </div>
         </div>
     </section>
-    <!-- Agents section End -->
-
-    <!-- Contact section Start -->
+    
     <section class="contact" id="contact">
         <h1 class="heading"><span>contact</span> us</h1>
         <div class="icons-container">
@@ -448,11 +438,9 @@
             </form>
             <iframe class="map" src="{{ asset('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.53716271237!2d90.41021171450308!3d23.799490492817114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7078cab04b5%3A0xef078e10390e1840!2sGulshan%20North%20Ave%2C%20Dhaka%201212!5e0!3m2!1sen!2sbd!4v1631034240931!5m2!1sen!2sbd') }}" allowfullscreen="" loading="lazy"></iframe>
         </div>
-    </section>
-    <!-- Contact section End -->
-
-    <!-- Footer section start -->
-    <section class="footer">
+    </section> #}
+    
+    {# <section class="footer">
         <div class="footer-container">
             <div class="box-container">
                 <div class="box">
@@ -490,8 +478,8 @@
                 created by <span>zaki chowdhury</span> | all rights reserved
             </div>
         </div>
-    </section>
-    <!-- Footer section End -->
+    </section> #}
+    
 
 
 
@@ -499,7 +487,7 @@
 
 
 
-    <!-- Custom Js Link -->
+    
     <script src="{{ asset('Backoffice/js/script.js') }}"></script>
 </body>
 </html>
