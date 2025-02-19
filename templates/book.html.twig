@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medcare | Hospital Website</title> 
+    <!-- Page Icon -->
+     <link rel="shortcut icon" href="{{asset('medcare-main/image/heartbeat-solid.svg')}}" type="image/x-icon">   
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')}} "/>
+    <!-- Custom Css File Link -->
+    <link rel="stylesheet" href="{{asset('/front/css/style.css')}}">
+</head>
+<body>
+   <section class="book" id="book">
+        <h1 class="heading"><span>book</span> now</h1>
+        <div class="row">
+            <div class="image">
+                <img src={{asset('')}}"./image/book-img.svg" alt="">
+{% block body %}
+    <h2>Réserver un rendez-vous</h2>
+
+    {{ form_start(form) }}
+        {{ form_row(form.titre) }}
+        {{ form_row(form.content) }}
+        {{ form_row(form.userID) }}
+        {{ form_row(form.datecreation) }}
+        <button type="submit">Envoyer</button>
+    {{ form_end(form) }}
+{% endblock %}
+    </section>
+    <!-- Book section End  -->
+    </section>
+    <!-- Footer section End  -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- custom js file link  -->
+    <script src="{{asset('medcare-main/js/script.js')}}"></script>
+</body>
+</html>

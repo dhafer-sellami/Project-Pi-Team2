@@ -55,24 +55,24 @@ class Artcles
         return $this;
     }
 
-    public function getUserID(): ?int
+    public function getuserId(): ?int
     {
         return $this->userID;
     }
-
-    public function setUserID(int $userID): static
+    
+    public function setuserID(int $userID): static
     {
         $this->userID = $userID;
-
+    
         return $this;
     }
-
-    public function getDatecreation(): ?\DateTimeInterface
+    
+    public function getdatecreation(): ?\DateTimeInterface
     {
         return $this->datecreation;
     }
 
-    public function setDatecreation(\DateTimeInterface $datecreation): static
+    public function setdatecreation(\DateTimeInterface $datecreation): static
     {
         $this->datecreation = $datecreation;
 

@@ -10,7 +10,7 @@
     <!-- font-awesome -->
     <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')}} "/>
     <!-- Custom Css File Link -->
-    <link rel="stylesheet" href="{{asset('/front/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('/Frontoffice/css/style.css')}}">
 </head>
 <body>
     <!-- Header Section Starts -->
@@ -21,7 +21,7 @@
             <a href="#services">services</a>
             <a href="#about">about</a>
             <a href="#doctors">doctors</a>
-            <a href="#book">book</a>
+            <a href="{{ path('book_appointment') }}">book</a>
             <a href="#review">review</a>
             <a href="#blogs">blogs</a>
         </nav>
@@ -208,17 +208,6 @@
         <div class="row">
             <div class="image">
                 <img src={{asset('')}}"./image/book-img.svg" alt="">
-{% block body %}
-    <h2>Réserver un rendez-vous</h2>
-
-    {{ form_start(form) }}
-        {{ form_row(form.titre) }}
-        {{ form_row(form.content) }}
-        {{ form_row(form.userId) }}
-        {{ form_row(form.dateCreation) }}
-        <button type="submit">Envoyer</button>
-    {{ form_end(form) }}
-{% endblock %}
     </section>
     <!-- Book section End  -->
 

@@ -1,0 +1,13 @@
+
+{% block title %}Edit Article{% endblock %}
+
+{% block body %}
+    <h1>Edit Article</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-success">Save Changes</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('list_articles') }}" class="btn btn-secondary">Back to List</a>
+{% endblock %}
