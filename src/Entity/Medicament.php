@@ -6,6 +6,7 @@ use App\Repository\MedicamentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MedicamentRepository::class)]
 class Medicament
@@ -16,15 +17,19 @@ class Medicament
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"do not leave it empty")]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"do not leave it empty")]
     private ?string $duration = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"do not leave it empty")]
     private ?string $category = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"do not leave it empty")]
     private ?string $description = null;
 
     /**

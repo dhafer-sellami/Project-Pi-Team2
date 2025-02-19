@@ -3,17 +3,16 @@
 {% block title %}New Medicament{% endblock %}
 
 {% block section %}
-    <section class="book" id="book">
+    <div class="book" id="book">
         <h1 class="heading"><span>Medi</span>cament</h1>
         <div class="row">
-            <div class="image">
+                {{ include('medicament/_form.html.twig') }}
+                 <div class="image">
                 <img src="{{asset('Frontoffice/image/book-img.svg')}}" alt="">
             </div>
-
-                {{ include('medicament/_form.html.twig') }}
    
    
    </div>
-    </section>
+    </div>
     
 {% endblock %}

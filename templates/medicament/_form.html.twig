@@ -1,10 +1,30 @@
-{{ form_start(form) }}
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
     
                 
                  {{ form_widget(form.name, {'attr': {'class': 'box','placeholder':'name'}}) }}
+                 {% if form_errors(form.name) %}
+                    <div class="error-message">
+                        {{ form_errors(form.name) }}
+                    </div>
+                {% endif %}
                 {{ form_widget(form.duration, {'attr': {'class': 'box','placeholder':'durée de consumation' }}) }}
+                {% if form_errors(form.name) %}
+                    <div class="error-message">
+                        {{ form_errors(form.name) }}
+                    </div>
+                {% endif %}
                 {{ form_widget(form.category, {'attr': {'class': 'box','placeholder':'category'}}) }}
+                {% if form_errors(form.name) %}
+                    <div class="error-message">
+                        {{ form_errors(form.name) }}
+                    </div>
+                {% endif %}
                 {{ form_widget(form.description, {'attr': {'class': 'box','placeholder':'description'}}) }}
+                {% if form_errors(form.name) %}
+                    <div class="error-message">
+                        {{ form_errors(form.name) }}
+                    </div>
+                {% endif %}
                 {{ form_widget(form.save,{'label':'Ajouter','attr':{'class':'btn'}})}}
                 <a href="{{ path('app_medicament_index') }}" class="btn">back to list</a>
             
