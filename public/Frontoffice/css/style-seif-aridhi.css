@@ -1,0 +1,107 @@
+/* list medicament start*/
+.table-container {
+    flex: 1 1 45rem;
+    background: #fff;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    border-radius: .5rem;
+    overflow-x: auto;
+}
+
+.medication-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.medication-table th, .medication-table td {
+    border: var(--border);
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: var(--black);
+}
+
+.medication-table th {
+    background: var(--green);
+    color: white;
+}
+
+.medication-table .btn {
+    padding: .5rem 2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+
+/* list medicament ends*/
+
+/* custom css code for seif eddine aridhi start*/
+.vertical-layout {
+    display: flex;
+    flex-direction: column; /* Arrange items in a vertical column */
+    align-items: center; /* Center items horizontally */
+    gap: 1rem; /* Add spacing between items */
+}
+
+.scrollable-container {
+    gap: 2rem;
+    max-height: 500px; /* Adjust height as needed */
+    width: 400px;
+    overflow-y: auto;
+   
+}
+.card-container {
+    flex: 1 1 45rem;
+    background: #fff;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    border-radius: .5rem;
+    overflow-x: auto;
+}
+
+.search-container{
+    
+    background: #fff;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    height: min-content;
+    border-radius: .5rem;
+    overflow-x: auto;
+}
+
+.home-ordonance{
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    gap: 1.5rem;
+    padding-top: 10rem;
+}
+.home-ordonance .image{
+    flex: 1 1 45rem;
+}
+.home-ordonance .image img{
+    width: 100%;
+}
+.home-ordonance .content{
+    flex: 1 1 45rem;
+}
+.home-ordonance .content h3 {
+    font-size: 4.5rem;
+    /* font-weight: 700; */
+    color: var(--black);
+    line-height: 1.8;
+    text-shadow: var(--text-shadow);
+}
+.home-ordonance .content p{
+    font-size:1.7rem;
+    color: var(--light-color);
+    line-height: 1.8;
+    padding: 1rem 0;
+}
+
+
+
+/* custom css code for seif eddine aridhi ends*/

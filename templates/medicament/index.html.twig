@@ -2,40 +2,48 @@
 
 {% block title %}Medicament index{% endblock %}
 
-{% block body %}
-    <h1>Medicament index</h1>
-
-    <table class="table">
-        <thead>
+{% block section %}
+    <section class="book" id="medications">
+    <div class="row">
+        
+        <div class="table-container">
+            <h3 class="heading" ><span>list</span> des médicaments</h3>
+            <table class="medication-table">
+                <thead>
+                    <tr>
+                        <th>Nom du Médicament</th>
+                        <th>Durée de Consommation</th>
+                        <th>Catégorie</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for medicament in medicaments %}
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Duration</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for medicament in medicaments %}
-            <tr>
-                <td>{{ medicament.id }}</td>
                 <td>{{ medicament.name }}</td>
                 <td>{{ medicament.duration }}</td>
                 <td>{{ medicament.category }}</td>
                 <td>{{ medicament.description }}</td>
                 <td>
-                    <a href="{{ path('app_medicament_show', {'id': medicament.id}) }}">show</a>
-                    <a href="{{ path('app_medicament_edit', {'id': medicament.id}) }}">edit</a>
+                    <a href="{{ path('app_medicament_show', {'id': medicament.id}) }}" class="btn">show</a>
+                    <a href="{{ path('app_medicament_edit', {'id': medicament.id}) }}" class="btn">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+                <a href="{{ path('app_medicament_new') }}" class="btn">Create new</a>
+        </div>
+    </div>
+    <div class="image">
+                <img src="{{asset('Frontoffice/image/book-img.svg')}}" alt="" height="150" width="150">
+            </div>
+</section>
 
-    <a href="{{ path('app_medicament_new') }}">Create new</a>
+
 {% endblock %}

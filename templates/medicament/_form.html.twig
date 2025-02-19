@@ -1,4 +1,11 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    
+                
+                 {{ form_widget(form.name, {'attr': {'class': 'box','placeholder':'name'}}) }}
+                {{ form_widget(form.duration, {'attr': {'class': 'box','placeholder':'durée de consumation' }}) }}
+                {{ form_widget(form.category, {'attr': {'class': 'box','placeholder':'category'}}) }}
+                {{ form_widget(form.description, {'attr': {'class': 'box','placeholder':'description'}}) }}
+                {{ form_widget(form.save,{'label':'Ajouter','attr':{'class':'btn'}})}}
+                <a href="{{ path('app_medicament_index') }}" class="btn">back to list</a>
+            
 {{ form_end(form) }}

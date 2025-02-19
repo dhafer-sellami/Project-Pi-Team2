@@ -2,12 +2,15 @@
 
 {% block title %}Edit Medicament{% endblock %}
 
-{% block body %}
-    <h1>Edit Medicament</h1>
+{% block section %}
+    <section class="book" id="book">
+        <h1 class="heading"><span>Medi</span>cament</h1>
+        <h1 class="heading">Edit Medicament</h1>
+
+        <div class="vertical-layout row">
 
     {{ include('medicament/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_medicament_index') }}">back to list</a>
-
     {{ include('medicament/_delete_form.html.twig') }}
+     </div>
+    </section>
 {% endblock %}
