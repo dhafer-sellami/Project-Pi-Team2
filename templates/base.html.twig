@@ -10,7 +10,7 @@
     <!-- font-awesome -->
     <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')}} "/>
     <!-- Custom Css File Link -->
-    <link rel="stylesheet" href="{{asset('medcare-main/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('/front/css/style.css')}}">
 </head>
 <body>
     <!-- Header Section Starts -->
@@ -208,16 +208,17 @@
         <div class="row">
             <div class="image">
                 <img src={{asset('')}}"./image/book-img.svg" alt="">
-            </div>
-            <form action="">
-                <h3>book appointment</h3>
-                <input type="text" placeholder="your name" class="box">
-                <input type="number" placeholder="your number" class="box">
-                <input type="email" placeholder="your email" class="box">
-                <input type="date" class="box">
-                <input type="submit" value="book now" class="btn">
-            </form>
-        </div>
+{% block body %}
+    <h2>Réserver un rendez-vous</h2>
+
+    {{ form_start(form) }}
+        {{ form_row(form.titre) }}
+        {{ form_row(form.content) }}
+        {{ form_row(form.userId) }}
+        {{ form_row(form.dateCreation) }}
+        <button type="submit">Envoyer</button>
+    {{ form_end(form) }}
+{% endblock %}
     </section>
     <!-- Book section End  -->
 
