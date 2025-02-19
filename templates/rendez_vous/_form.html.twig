@@ -1,0 +1,28 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+{{ form_start(form, {'attr': {'id': 'rendezvous-form'}}) }}
+
+<h3 class="heading"><span>PRENDRE UN RENDEZ VOUS</span> </h3>
+
+<div class="custom-label">
+    {{ form_label(form.date, "Date d'inscription") }}
+</div>
+{{ form_widget(form.date, {'attr': {'type':'datetime-local', 'class': 'box', 'id':'date'}}) }}
+
+
+{# Affichage de l'erreur uniquement s'il y a une erreur #}
+{% if form.date.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.date.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<input type="number" placeholder="Saisissez votre numéro" class="box">
+<input type="email" placeholder="Saisissez votre email" class="box">
+<input type="text" placeholder="Saisissez votre nom et prénom" class="box">
+
+{{ form_widget(form.save, {'label':'Ajouter','attr':{'class':'btn'}}) }}
+
+{{ form_end(form) }}
+

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New RendezVous{% endblock %}
+
+{% block section %}
+    <section class="book" id="book">
+    
+        
+        <!-- Conteneur principal avec flex pour le formulaire et l'image -->
+        <div class="conteneur1">
+            <!-- Formulaire à gauche -->
+            <div class="row1">
+                {{ include('rendez_vous/_form.html.twig') }}
+            </div>
+
+            <!-- Image à droite -->
+            <div class="image-container">
+                <img src="{{ asset('Frontoffice/image/about-img.svg') }}" alt="">
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+

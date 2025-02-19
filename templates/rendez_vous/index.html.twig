@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RendezVous index{% endblock %}
+
+{% block section %}
+    <section class="appointments" >
+        
+
+    <h1 class="headingt"><span>Liste des</span> Rendez-vous</h1>
+        
+
+        
+    <div class="conteneur">
+    
+    <table class="adem-table">
+        <thead>
+            <tr>
+                <th><h1><strong>id</strong></h1></th>
+                <th><h1><strong>Date</strong></h1></th>
+                <th><h1><strong>Action</strong></h1></th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for rendez_vou in rendez_vouses %}
+                <tr>
+                    <td>{{ rendez_vou.id }}</td>
+                    <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_rendez_vous_show', {'id': rendez_vou.id}) }}" class="btn">refuser</a>
+                        <a href="{{ path('app_rendez_vous_edit', {'id': rendez_vou.id}) }}" class="btn">confirmer</a>
+                        <form method="post" action="{{ path('app_rendez_vous_delete', {'id': rendez_vou.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?');" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rendez_vou.id) }}">
+                            <button type="submit" class="btn btn-danger" style="font-weight: bold;">Supprimer</button>
+
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   <img src="{{asset('Frontoffice/image/book-img.svg')}}" alt="">
+</div>
+
+
+
+    
+ 
+
+            
+       
+    </section>
+{% endblock %}
