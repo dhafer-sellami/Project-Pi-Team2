@@ -1,11 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Facture{% endblock %}
+{% block title %}New RendezVous{% endblock %}
 
-{% block body %}
-    <h1>Create new Facture</h1>
+{% block section %}
+    <section class="book" id="book">
+    
+        <div class="conteneur1">
+            <!-- Formulaire à gauche -->
+            <div class="row1">
+                {{ include('facture/_form.html.twig') }}
+            </div>
 
-    {{ include('facture/_form.html.twig') }}
+            
+            <div class="image-container">
+                <img src="{{ asset('Frontoffice/image/about-img.svg') }}" alt="">
+            </div>
+        </div>
+    </section>
 
-    <a href="{{ path('app_facture_index') }}">back to list</a>
+
+
 {% endblock %}
+
+
+    
+
+    

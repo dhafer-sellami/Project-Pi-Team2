@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class FactureType extends AbstractType
 {
@@ -16,14 +17,8 @@ class FactureType extends AbstractType
     {
         $builder
             ->add('prix')
-            ->add('idrdv', EntityType::class, [
-                'class' => RendezVous::class,
-                'choice_label' => 'id',
-            ])
-            ->add('idusr1', EntityType::class, [
-                'class' => user::class,
-                'choice_label' => 'id',
-            ])
+            
+            ->add('save', SubmitType::class);
         ;
     }
 

@@ -33,9 +33,10 @@ final class FactureController extends AbstractController
             $entityManager->persist($facture);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
+            return $this->render('Facture/index3.html.twig');
         }
-
+        
+        
         return $this->render('facture/new.html.twig', [
             'facture' => $facture,
             'form' => $form,

@@ -583,7 +583,7 @@ section:nth-child(even){
 }
 /* Liste des rendez-vous */
 .appointments {
-    padding:  20px 50px; /* Augmente l'espace en haut */
+    padding:  20px 50px; 
     justify-content: space-between;
     
     
@@ -607,6 +607,7 @@ section:nth-child(even){
     border-radius: 10px;
     background: white;
     
+    
    
 }
 
@@ -615,7 +616,7 @@ section:nth-child(even){
     width: 80%;
     border-collapse: collapse;
     background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre élégante */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     
     
     border: 2px solid #16a085;
@@ -795,8 +796,8 @@ section:nth-child(even){
 /* Conteneur principal qui utilise flexbox pour le placement du formulaire et de l'image */
 .conteneur1 {
     display: flex;
-    justify-content: space-between; /* Pour séparer le formulaire et l'image */
-    align-items: center; /* Centrer verticalement */
+    justify-content: space-between; 
+    align-items: center; 
     gap: 20px; /* Espacement entre le formulaire et l'image */
     flex-wrap: wrap; /* Permet aux éléments de passer sur la ligne si nécessaire */
     margin-top: -40px;
@@ -825,9 +826,9 @@ section:nth-child(even){
 
 /* Ajustement de l'image */
 .image-container img {
-    width: 170%; /* Fait en sorte que l'image occupe toute la largeur du conteneur */
-    height: auto; /* Maintient les proportions */
-    border-radius: 10px; /* Optionnel : pour donner des coins arrondis à l'image */
+    width: 170%; 
+    height: auto; 
+    border-radius: 10px; 
 }
 
 .alert {

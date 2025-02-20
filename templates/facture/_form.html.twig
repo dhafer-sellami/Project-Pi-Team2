@@ -1,4 +1,24 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+{{ form_start(form, {'attr': {'id': 'Facture-form'}}) }}
+
+<h3 class="heading"><span>DONNER LE PRIX </span> </h3>
+
+
+{{ form_widget(form.prix, {'attr': {'type':'number', 'class': 'box', 'id':'prix', 'placeholder': 'Saisissez Le Prix'}}) }}
+
+
+{% if form.prix.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.prix.vars.errors %}
+            {{ error.message }}<br>
+            
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+
+{{ form_widget(form.save, {'label':'Ajouter','attr':{'class':'btn'}}) }}
+
 {{ form_end(form) }}

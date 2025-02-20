@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\FactureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: FactureRepository::class)]
 class Facture
@@ -17,10 +19,12 @@ class Facture
     private ?RendezVous $idrdv = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\NotBlank(message: "Le numéro est obligatoire.")]
+    #[Assert\Type(type:"integer", message: "Le numéro doit être un entier.")]
     private ?int $prix = null;
 
     #[ORM\ManyToOne]
-    private ?user $idusr1 = null;
+    private ?User $idusr1 = null;
 
     public function getId(): ?int
     {
@@ -62,4 +66,6 @@ class Facture
 
         return $this;
     }
+
+   
 }
