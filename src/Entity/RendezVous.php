@@ -7,7 +7,10 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+
+#[UniqueEntity(fields: ['date'], message: "Un rendez-vous existe déjà à cette date et heure. Veuillez choisir une autre heure.")]
 #[ORM\Entity(repositoryClass: RendezVousRepository::class)]
 class RendezVous
 {
@@ -17,7 +20,7 @@ class RendezVous
     private ?int $id = null;
 
     #[ORM\Column(type:"datetime", nullable:true)]
-    #[Assert\NotBlank(message: "Veuillez sélectionner une date.")]
+    #[Assert\NotBlank(message: "Veuillez sélectionner une date et une heure.")]
     #[Assert\GreaterThan("today", message: "La date doit être dans le futur.")]
     private ?\DateTimeInterface $date = null;
 
@@ -25,12 +28,18 @@ class RendezVous
     private ?User $idusr = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Email(message: "L'adresse email  n'est pas valide.")]
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
     private ?string $email = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\NotBlank(message: "Le numéro est obligatoire.")]
+    #[Assert\Type(type:"integer", message: "Le numéro doit être un entier.")]
     private ?int $num = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: "L'état est obligatoire.")]
+    #[Assert\Type(type: "string", message: "L'état doit être une chaîne de caractères.")]
     private ?string $etat = null;
 
     public function getId(): ?int
@@ -97,4 +106,5 @@ class RendezVous
 
         return $this;
     }
+    
 }

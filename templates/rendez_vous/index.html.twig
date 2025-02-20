@@ -18,6 +18,9 @@
                 <th><h1><strong>id</strong></h1></th>
                 <th><h1><strong>Date</strong></h1></th>
                 <th><h1><strong>Action</strong></h1></th>
+                <th><h1><strong>email</strong></h1></th>
+                <th><h1><strong>Etat</strong></h1></th>
+                <th><h1><strong>Num</strong></h1></th>
                 
                 
             </tr>
@@ -36,6 +39,11 @@
 
                         </form>
                     </td>
+                    <td>{{ rendez_vou.email }}</td>
+                    <td>{{ rendez_vou.num }}</td>
+                    <td>{{ rendez_vou.etat }}</td>
+                    
+
                 </tr>
             {% else %}
                 <tr>

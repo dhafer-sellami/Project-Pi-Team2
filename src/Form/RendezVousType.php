@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class RendezVousType extends AbstractType
 {
@@ -30,6 +31,35 @@ class RendezVousType extends AbstractType
                     new Callback([$this, 'validateDateLimit']),
                 ],
             ])
+            
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'box',
+                    'placeholder' => 'Saisissez votre email'
+                ]
+            ])
+
+            ->add('num', IntegerType::class, [
+                'attr' => [
+                    'class' => 'box',
+                    'placeholder' => 'Saisissez votre numéro'
+                ]
+            ])
+
+            ->add('etat', stringType::class, [
+                'attr' => [
+                    'class' => 'box',
+                    'placeholder' => 'Saisissez votre etat'
+                ]
+            ])
+        
+            
+            ->add('num')
+
+
+            ->add('etat')
+            
+            
             ->add('save', SubmitType::class);
     }
 
@@ -56,6 +86,7 @@ class RendezVousType extends AbstractType
         }
     }
 }
+
 
 
     public function configureOptions(OptionsResolver $resolver): void

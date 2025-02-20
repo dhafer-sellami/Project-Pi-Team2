@@ -18,9 +18,41 @@
     </div>
 {% endif %}
 
-<input type="number" placeholder="Saisissez votre numéro" class="box">
-<input type="email" placeholder="Saisissez votre email" class="box">
-<input type="text" placeholder="Saisissez votre nom et prénom" class="box">
+{{ form_widget(form.email, {'attr': {'type':'number', 'class': 'box', 'id':'email'}}) }}
+{% if form.email.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.email.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{{ form_widget(form.num, {'attr': {'type':'number', 'class': 'box', 'id':'num', 'placeholder': 'Saisissez votre numéro'}}) }}
+
+{% if form.num.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.num.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{{ form_widget(form.etat, {'attr': {'type':'string', 'class': 'box', 'id':'etat', 'placeholder': 'Saisissez votre etat'}}) }}
+
+{% if form.etat.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.etat.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+
+
 
 {{ form_widget(form.save, {'label':'Ajouter','attr':{'class':'btn'}}) }}
 
