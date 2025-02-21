@@ -1,6 +1,20 @@
-{{ form_start(form) }}  
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
     {{ form_widget(form.date, {'attr': {'type':'date','class': 'box','placeholder':'name'}}) }}
+    {% if form_errors(form.date) %}
+    <div class="error-message">
+        {{ form_errors(form.date) }}
+    </div>
+{% endif %}
+
+
     {{ form_widget(form.notice, {'attr': {'class': 'box','placeholder':'Notice'}}) }}
+    {% if form_errors(form.notice) %}
+    <div class="error-message">
+        {{ form_errors(form.notice) }}
+    </div>
+    {% endif %}
+
    
      <input type="text" id="medicament-search" class="box" placeholder="Search Medicaments...">
     <div id="medicament-container">

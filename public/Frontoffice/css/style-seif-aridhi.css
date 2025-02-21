@@ -103,5 +103,16 @@
 }
 
 
+.error-message {
+    color: red; /* Highlight errors in red */
+    font-size: 1.4rem; /* Slightly smaller font for subtle emphasis */
+    margin-bottom: 0.5rem; /* Space between the field and the error message */
+    text-align: left; /* Align error text to the left */
+    background-color: rgba(255, 0, 0, 0.1); /* Light red background for visibility */
+    padding: 0.5rem; /* Padding for better readability */
+    border-radius: 0.5rem; /* Rounded corners to match your form's style */
+}
+
+
 
 /* custom css code for seif eddine aridhi ends*/

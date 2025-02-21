@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: OrdonanceRepository::class)]
 class Ordonance
@@ -17,6 +19,7 @@ class Ordonance
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"do not leave it empty")]
     private ?string $notice = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]

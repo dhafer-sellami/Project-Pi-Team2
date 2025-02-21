@@ -10,7 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
 class OrdonanceType extends AbstractType
@@ -19,8 +19,9 @@ class OrdonanceType extends AbstractType
     {
         $builder
             ->add('notice')
-            ->add('date', null, [
+            ->add('date', DateType::class, [
                 'widget' => 'single_text',
+                'data' => new \DateTime(),
             ])
             ->add('doctorId', EntityType::class, [
                 'class' => User::class,
