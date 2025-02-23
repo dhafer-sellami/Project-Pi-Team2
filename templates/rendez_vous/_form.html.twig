@@ -9,7 +9,8 @@
 {{ form_widget(form.date, {'attr': {'type':'datetime-local', 'class': 'box', 'id':'date'}}) }}
 
 
-{# Affichage de l'erreur uniquement s'il y a une erreur #}
+
+
 {% if form.date.vars.errors|length > 0 %}
     <div class="alert alert-danger">
         {% for error in form.date.vars.errors %}
@@ -17,6 +18,12 @@
         {% endfor %}
     </div>
 {% endif %}
+{% for message in app.flashes('danger') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+
 
 {{ form_widget(form.email, {'attr': {'type':'number', 'class': 'box', 'id':'email'}}) }}
 {% if form.email.vars.errors|length > 0 %}

@@ -32,9 +32,15 @@ final class RendezVousController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $date = $form->get('date')->getData();
 
-            $hour = (int) $date->format('H');
-            if ($hour < 8 || $hour >= 17) {
+            $hr = (int) $date->format('H');
+            $min = (int) $date->format('i'); 
+
+            if ($hr < 8 || $hr >= 17) {
                 $this->addFlash('danger', 'Les rendez-vous sont possibles uniquement entre 08h00 et 17h00.');
+                return $this->redirectToRoute('app_rendez_vous_new');
+            }
+            if ($min !== 0 && $min !== 30) {
+                $this->addFlash('danger', 'Les rendez-vous doivent être pris à des horaires fixes : 00 ou 30 minutes.');
                 return $this->redirectToRoute('app_rendez_vous_new');
             }
     

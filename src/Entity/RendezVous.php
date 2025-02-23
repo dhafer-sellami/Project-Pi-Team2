@@ -10,6 +10,7 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
+
 #[UniqueEntity(fields: ['date'], message: "Un rendez-vous existe déjà à cette date et heure. Veuillez choisir une autre heure.")]
 #[ORM\Entity(repositoryClass: RendezVousRepository::class)]
 class RendezVous
@@ -33,8 +34,15 @@ class RendezVous
     private ?string $email = null;
 
     #[ORM\Column(nullable: true)]
+    
     #[Assert\NotBlank(message: "Le numéro est obligatoire.")]
     #[Assert\Type(type:"integer", message: "Le numéro doit être un entier.")]
+    #[Assert\Positive(message: "Le numéro doit être un entier positif.")]
+    #[Assert\Length(
+       min: 8,
+       max: 8,
+       exactMessage: "Le numéro doit contenir exactement 8 chiffres."
+    )]
     private ?int $num = null;
 
     #[ORM\Column(length: 255, nullable: true)]

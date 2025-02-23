@@ -69,7 +69,7 @@ class RendezVousType extends AbstractType
         $startOfDay = (clone $date)->setTime(00, 00, 00);
         $endOfDay = (clone $date)->setTime(23, 59, 59);
 
-        // Compte les rendez-vous existants pour cette date
+         
         $count = $this->entityManager->getRepository(RendezVous::class)
             ->createQueryBuilder('r')
             ->select('COUNT(r.id)')

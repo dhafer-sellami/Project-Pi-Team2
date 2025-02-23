@@ -1,0 +1,98 @@
+{% extends 'baseB.html.twig' %}
+
+{% block title %}
+	Ordonnances
+{% endblock %}
+
+{% block section %}
+	<div class="container mt-4">
+		<h1 class="mt-4">Médicaments</h1>
+		<ol class="breadcrumb mb-4">
+			<li class="breadcrumb-item active">affichage</li>
+		</ol>
+
+		<div
+			class="d-flex">
+			<!-- Search Container -->
+			<div class="col-12 col-md-4 mb-4">
+				<div class="card h-100 shadow-sm">
+					<div class="card-header bg-primary text-white">
+						Search Ordonnances
+					</div>
+					<div class="card-body">
+						<form id="search-form">
+							<div class="form-group">
+								<label for="search-date">Date</label>
+								<input type="date" id="search-date" class="form-control" placeholder="Search by date">
+							</div>
+							<button type="submit" class="btn btn-primary mt-3">Search</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- Scrollable Container -->
+			<div class="flex-grow-1">
+				<div class="scrollable-container" style="max-height: 600px; overflow-y: auto;">
+					{% for ordonnance in ordonances %}
+						<div class="col-12 mb-4">
+							<div class="card h-100 shadow-sm">
+								<div class="card-header bg-primary text-white">
+									Ordonnance #{{ ordonnance.id }}
+								</div>
+								<div class="card-body">
+									<h5 class="card-title">Date:
+										{{ ordonnance.date|date('Y-m-d') }}</h5>
+									<p class="card-text">Notice:
+										{{ ordonnance.notice }}</p>
+									{#	<p class="card-text">Doctor:
+																											                                        {{ ordonnance.doctor }}</p>
+																											                                        <p class="card-text">Patient:
+																											                                        {{ ordonnance.patient }}</p>
+																											                                        #}
+									<!-- Medication Table -->
+									<div style="overflow-x: auto;">
+										<table class="table table-bordered">
+											<thead class="table-light">
+												<tr>
+													<th>Name</th>
+													<th>Category</th>
+													<th>Duration</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for medicament in ordonnance.medicaments %}
+													<tr>
+														<td>{{ medicament.name }}</td>
+														<td>{{ medicament.category }}</td>
+														<td>{{ medicament.duration }}</td>
+													</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById('search-form').addEventListener('submit', function (event) {
+event.preventDefault();
+const searchDate = document.getElementById('search-date').value;
+const ordonnances = document.querySelectorAll('.card');
+ordonnances.forEach(ordonnance => {
+const date = ordonnance.querySelector('.card-title').textContent.trim().split(': ')[1];
+if (date === searchDate) {
+ordonnance.style.display = 'block';
+} else {
+ordonnance.style.display = 'none';
+}
+});
+});
+	</script>
+{% endblock %}

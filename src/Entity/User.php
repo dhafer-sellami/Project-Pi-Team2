@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -21,6 +23,17 @@ class User
 
     #[ORM\Column]
     private array $roles = [];
+
+    /**
+     * @var Collection<int, Ordonance>
+     */
+    #[ORM\OneToMany(targetEntity: Ordonance::class, mappedBy: 'patientId')]
+    private Collection $ordonances;
+
+    public function __construct()
+    {
+        $this->ordonances = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +72,36 @@ class User
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ordonance>
+     */
+    public function getOrdonances(): Collection
+    {
+        return $this->ordonances;
+    }
+
+    public function addOrdonance(Ordonance $ordonance): static
+    {
+        if (!$this->ordonances->contains($ordonance)) {
+            $this->ordonances->add($ordonance);
+            $ordonance->setPatientId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrdonance(Ordonance $ordonance): static
+    {
+        if ($this->ordonances->removeElement($ordonance)) {
+            // set the owning side to null (unless already changed)
+            if ($ordonance->getPatientId() === $this) {
+                $ordonance->setPatientId(null);
+            }
+        }
 
         return $this;
     }

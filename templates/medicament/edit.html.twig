@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Medicament{% endblock %}
+
+{% block section %}
+    <section class="book" id="book">
+        <h1 class="heading"><span>Medi</span>cament</h1>
+        <h1 class="heading">Edit Medicament</h1>
+
+        <div class="vertical-layout row">
+
+    {{ include('medicament/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('medicament/_delete_form.html.twig') }}
+     </div>
+    </section>
+{% endblock %}

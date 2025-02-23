@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Medicament{% endblock %}
+
+{% block section %}
+    <section class="book" id="book">
+        <h1 class="heading"><span>new</span> Medicament</h1>
+        <div class="row">
+                {{ include('medicament/_form.html.twig') }}
+                 <div class="image">
+                <img src="{{asset('Frontoffice/image/book-img.svg')}}" alt="">
+            </div>
+   
+   
+   </div>
+    </section>
+    
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'baseB.html.twig' %}
+
+{% block title %}Hello AdminMedicamentController!
+{% endblock %}
+
+{% block section %}
+	<div class="container-fluid px-4">
+		<h1 class="mt-4">Médicaments</h1>
+		<ol class="breadcrumb mb-4">
+			<li class="breadcrumb-item active">affichage</li>
+		</ol>
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table me-1"></i>
+				DataTable Example
+			</div>
+
+			<div class="card-body">
+				<table id="datatablesSimple">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Duration</th>
+							<th>Office</th>
+							<th>Category</th>
+							<th>Description</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{% for medicament in medicaments %}
+							<tr>
+								<td>{{ medicament.name }}</td>
+								<td>{{ medicament.duration }}</td>
+								<td>{{ medicament.category }}</td>
+								<td>{{ medicament.description }}</td>
+								<td>
+									<a href="{{ path('app_medicament_show', {'id': medicament.id}) }}" class="btn btn-success">show</a>
+									<a href="{{ path('app_medicament_edit', {'id': medicament.id}) }}" class="btn btn-warning">edit</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+
+	{% endblock %}
