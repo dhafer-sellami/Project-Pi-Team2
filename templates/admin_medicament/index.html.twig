@@ -12,7 +12,8 @@
 		<div class="card mb-4">
 			<div class="card-header">
 				<i class="fas fa-table me-1"></i>
-				DataTable Example
+				Liste des médicaments
+				<a href="{{ path('app_admin_medicament_new') }}" class="btn btn-primary">Ajouter</a>
 			</div>
 
 			<div class="card-body">
@@ -35,8 +36,8 @@
 								<td>{{ medicament.category }}</td>
 								<td>{{ medicament.description }}</td>
 								<td>
-									<a href="{{ path('app_medicament_show', {'id': medicament.id}) }}" class="btn btn-success">show</a>
-									<a href="{{ path('app_medicament_edit', {'id': medicament.id}) }}" class="btn btn-warning">edit</a>
+									<a href="{{ path('app_admin_medicament_edit', {'id': medicament.id}) }}" class="btn btn-warning">edit</a>
+									{{ include('admin_medicament/_delete_form.html.twig') }}
 								</td>
 							</tr>
 						{% else %}

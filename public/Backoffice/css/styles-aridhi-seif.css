@@ -1,0 +1,9 @@
+.error-message {
+    color: #f50303; /* White text */
+    background-color: #f8d7da; /* Light red background */
+    border: 1px solid #dc3545; /* Red border */
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}

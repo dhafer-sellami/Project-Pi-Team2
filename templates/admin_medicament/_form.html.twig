@@ -1,0 +1,48 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<div class="form-group">
+	{{ form_label(form.name, 'Name', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Name'}}) }}
+	{% if form_errors(form.name) %}
+		<div class="error-message">
+			{{ form_errors(form.name) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	{{ form_label(form.duration, 'Duration', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.duration, {'attr': {'class': 'form-control', 'placeholder': 'Duration'}}) }}
+	{% if form_errors(form.duration) %}
+		<div class="error-message">
+			{{ form_errors(form.duration) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	{{ form_label(form.category, 'Category', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.category, {'attr': {'class': 'form-control', 'placeholder': 'Category'}}) }}
+	{% if form_errors(form.category) %}
+		<div class="error-message">
+			{{ form_errors(form.category) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	{{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+	{% if form_errors(form.description) %}
+		<div class="error-message">
+			{{ form_errors(form.description) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	{{ form_widget(form.save, {'label': 'Ajouter', 'attr': {'class': 'btn btn-primary'}}) }}
+	<a href="{{ path('app_admin_medicament') }}" class="btn btn-secondary">Back to list</a>
+</div>
+
+{{ form_end(form) }}
