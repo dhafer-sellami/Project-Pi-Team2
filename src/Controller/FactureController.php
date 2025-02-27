@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\RendezVousRepository;
 
 #[Route('/facture')]
 final class FactureController extends AbstractController
@@ -22,14 +23,32 @@ final class FactureController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_facture_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new/{rdvid}', name: 'app_facture_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager , RendezVousRepository $rendezVousRepository, int $rdvid  ): Response
     {
         $facture = new Facture();
+
+
+
+        if ($rdvid) {
+            $rendezVous = $rendezVousRepository->find($rdvid);
+            
+            if (!$rendezVous) {
+                throw $this->createNotFoundException('Le rendez-vous spécifié n\'existe pas.');
+            }
+    
+            $facture->setIdrdv($rendezVous);
+        }
+
+
+
         $form = $this->createForm(FactureType::class, $facture);
         $form->handleRequest($request);
 
+        
+
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager->persist($facture);
             $entityManager->flush();
 

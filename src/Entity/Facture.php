@@ -16,6 +16,7 @@ class Facture
     private ?int $id = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?RendezVous $idrdv = null;
 
     #[ORM\Column(nullable: true)]

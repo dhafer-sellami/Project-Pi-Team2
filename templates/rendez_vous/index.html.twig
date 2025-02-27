@@ -17,10 +17,10 @@
             <tr>
                 <th><h1><strong>id</strong></h1></th>
                 <th><h1><strong>Date</strong></h1></th>
-                <th><h1><strong>Action</strong></h1></th>
+                <th><h1><strong>Etat</strong></h1></th>
                 <th><h1><strong>Email</strong></h1></th>
                 <th><h1><strong>Num</strong></h1></th>
-                <th><h1><strong>Etat</strong></h1></th>
+                <th><h1><strong>Action</strong></h1></th>
                 
                 
             </tr>
@@ -30,17 +30,18 @@
                 <tr>
                     <td>{{ rendez_vou.id }}</td>
                     <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d H:i:s') : '' }}</td>
+                    
+                    <td>{{ rendez_vou.email }}</td>
+                    <td>{{ rendez_vou.num }}</td>
+                    <td>{{ rendez_vou.etat }}</td>
                     <td>
-                        <a href="{{ path('app_rendez_vous_show', {'id': rendez_vou.id}) }}" class="btn">refuser</a>
-                        <a href="{{ path('app_rendez_vous_edit', {'id': rendez_vou.id}) }}" class="btn">confirmer</a>
+                        <a href="{{ path('app_facture_new', {'rdvid': rendez_vou.id}) }}" class="btn">modif prix</a>
+                        <a href="{{ path('app_rendez_vous_confirm', {'id': rendez_vou.id}) }}" class="btn">confirmer</a>
                         {{ include('rendez_vous/_delete_form.html.twig', {'rendez_vou': rendez_vou}) }}
 
 
                         </form>
                     </td>
-                    <td>{{ rendez_vou.email }}</td>
-                    <td>{{ rendez_vou.num }}</td>
-                    <td>{{ rendez_vou.etat }}</td>
                     
 
                 </tr>

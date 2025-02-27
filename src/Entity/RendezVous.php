@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
+ 
 
 
 #[UniqueEntity(fields: ['date'], message: "Un rendez-vous existe déjà à cette date et heure. Veuillez choisir une autre heure.")]
