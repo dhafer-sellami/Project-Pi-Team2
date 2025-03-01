@@ -1,0 +1,28 @@
+{% extends 'baseB.html.twig' %}
+
+{% block title %}Edit Ordonnance
+{% endblock %}
+
+{% block section %}
+	<div class="container-fluid px-4">
+		<h1 class="mt-4">Edit Ordonnance</h1>
+		<ol class="breadcrumb mb-4">
+			<li class="breadcrumb-item">
+				<a href="{{ path('dashboard') }}">Dashboard</a>
+			</li>
+			<li class="breadcrumb-item active">Edit Ordonnance</li>
+		</ol>
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-edit me-1"></i>
+				Edit Ordonnance
+			</div>
+
+			<div class="card-body">
+				{{ include('admin_ordonance/_form.html.twig', {'button_label': 'Update'}) }}
+				{#{{ include('admin_ordonance/_delete_form.html.twig') }} #}
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'baseB.html.twig' %}
+
+{% block title %}
+	Ordonnance Details
+{% endblock %}
+
+{% block section %}
+	<div class="container mt-4">
+		<h1 class="mt-4">Ordonnance Details</h1>
+		<ol class="breadcrumb mb-4">
+			<li class="breadcrumb-item">
+				<a href="{{ path('dashboard') }}">Dashboard</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_admin_ordonance') }}">Ordonnances</a>
+			</li>
+			<li class="breadcrumb-item active">Ordonnance #{{ ordonnance.id }}</li>
+		</ol>
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-file-alt me-1"></i>
+				Ordonnance #{{ ordonnance.id }}
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Date:
+					{{ ordonnance.date|date('Y-m-d') }}</h5>
+				<p class="card-text">Notice:
+					{{ ordonnance.notice }}</p>
+				<p class="card-text">Doctor:
+					{{ ordonnance.doctor.name }}</p>
+				<p class="card-text">Patient:
+					{{ ordonnance.patient.name }}</p>
+
+				<!-- Medication Table -->
+				<div style="overflow-x: auto;">
+					<table class="table table-bordered">
+						<thead class="table-light">
+							<tr>
+								<th>Name</th>
+								<th>Category</th>
+								<th>Duration</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for medicament in ordonnance.medicaments %}
+								<tr>
+									<td>{{ medicament.name }}</td>
+									<td>{{ medicament.category }}</td>
+									<td>{{ medicament.duration }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<a href="{{ path('app_admin_ordonance_edit', {'id': ordonnance.id}) }}" class="btn btn-warning">Edit</a>
+				{{ include('admin_ordonance/_delete_form.html.twig') }}
+				<a href="{{ path('app_admin_ordonance') }}" class="btn btn-secondary">Back to list</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

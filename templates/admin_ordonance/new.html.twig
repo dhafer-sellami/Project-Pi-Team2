@@ -1,0 +1,25 @@
+{% extends 'baseB.html.twig' %}
+
+{% block title %}New Page
+{% endblock %}
+
+{% block section %}
+	<div class="container-fluid px-4">
+		<h1 class="mt-4">New Page</h1>
+		<ol class="breadcrumb mb-4">
+			<li class="breadcrumb-item">
+				<a href="{{ path('dashboard') }}">Dashboard</a>
+			</li>
+			<li class="breadcrumb-item active">New Page</li>
+		</ol>
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-plus me-1"></i>
+				Add New Item
+			</div>
+			<div class="card-body">
+				{% include 'admin_ordonance/_form.html.twig' %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

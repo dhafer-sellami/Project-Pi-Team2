@@ -1,0 +1,85 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<div class="form-group">
+	{{ form_label(form.notice, 'Notice', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.notice, {'attr': {'class': 'form-control', 'placeholder': 'Notice'}}) }}
+	{% if form_errors(form.notice) %}
+		<div class="error-message">
+			{{ form_errors(form.notice) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	{{ form_label(form.date, 'Date', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.date, {'attr': {'class': 'form-control', 'type': 'date'}}) }}
+	{% if form_errors(form.date) %}
+		<div class="error-message">
+			{{ form_errors(form.date) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	{{ form_label(form.doctorId, 'Doctor', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.doctorId, {'attr': {'class': 'form-control'}}) }}
+	{% if form_errors(form.doctorId) %}
+		<div class="error-message">
+			{{ form_errors(form.doctorId) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	{{ form_label(form.patientId, 'Patient', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.patientId, {'attr': {'class': 'form-control'}}) }}
+	{% if form_errors(form.patientId) %}
+		<div class="error-message">
+			{{ form_errors(form.patientId) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	<label for="medicament-search" class="form-label">Search Medicaments</label>
+	<input type="text" id="medicament-search" class="form-control" placeholder="Search by name">
+</div>
+
+<div class="form-group" id="medicament-container">
+	{{ form_label(form.medicaments, 'Medicaments', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.medicaments, {'attr': {'class': 'form-control'}}) }}
+	{% if form_errors(form.medicaments) %}
+		<div class="error-message">
+			{{ form_errors(form.medicaments) }}
+		</div>
+	{% endif %}
+</div>
+
+<div class="form-group">
+	{{ form_widget(form.save, {'label': 'Save', 'attr': {'class': 'btn btn-primary'}}) }}
+	<a href="{{ path('app_admin_ordonance') }}" class="btn btn-secondary">Back to list</a>
+</div>
+
+{{ form_end(form) }}
+
+<script>
+	document.getElementById('medicament-search').addEventListener('keyup', function () {
+let filter = this.value.toLowerCase();
+let checkboxes = document.querySelectorAll('#medicament-container input[type="checkbox"]');
+
+checkboxes.forEach(function (checkbox) {
+let label = checkbox.nextElementSibling; // Get the label next to the checkbox
+
+if (label) {
+let text = label.textContent.toLowerCase();
+if (text.includes(filter)) {
+checkbox.style.display = "inline-block"; // Show checkbox
+label.style.display = "inline-block"; // Show label
+} else {
+checkbox.style.display = "none"; // Hide checkbox
+label.style.display = "none"; // Hide label
+}
+}
+});
+});
+</script>
