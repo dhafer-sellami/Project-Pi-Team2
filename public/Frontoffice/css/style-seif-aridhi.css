@@ -46,7 +46,7 @@
 
 .scrollable-container {
     gap: 2rem;
-    max-height: 500px; /* Adjust height as needed */
+    max-height: 700px; /* Adjust height as needed */
     width: 400px;
     overflow-y: auto;
    
@@ -113,6 +113,58 @@
     border-radius: 0.5rem; /* Rounded corners to match your form's style */
 }
 
+
+/* filepath: /home/seif/Documents/GitHub/Project-Pi-Team2/public/css/styles.css */
+
+/* Container for the pagination */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center; /* center the pagination */
+    gap: 5px; /* space between items */
+    margin: 20px 0;
+}
+
+/* Each pagination item */
+.page-item {
+    display: inline;
+}
+
+/* Links inside pagination */
+.page-link {
+    display: block;
+    padding: 8px 12px;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Hover effect on links */
+.page-link:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
+}
+
+/* Active page */
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    cursor: default;
+}
+
+/* Disabled links (like when there's no next page) */
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+    cursor: not-allowed;
+}
 
 
 /* custom css code for seif eddine aridhi ends*/

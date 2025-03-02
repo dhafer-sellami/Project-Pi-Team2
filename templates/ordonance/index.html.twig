@@ -7,18 +7,16 @@
 	<section class="home-ordonance" id="ordonnance">
 		<h1 class="heading">
 			<span>Liste des</span>
-			Ordonnances</h1>
+			Ordonnances
+		</h1>
 
 		<div class="search-container" style="margin-bottom: 20px; display: flex;justify-content:center; width: 100%;">
 			<input class="box" type="date" id="search-date">
 			<button class="btn" onclick="filterOrdonnances()">Rechercher</button>
 		</div>
 
-		<div
-			class="table-container scrollable-container" style="width: max-content;">
-
-			<!-- Ordonnance Card 1 -->
-			{% for ordonance in ordonances %}
+		<div class="table-container scrollable-container" style="width: max-content;">
+			{% for ordonance in pagination %}
 				<div class="card-container">
 					<div class="box">
 						<h3>Ordonnance #{{ ordonance.id }}</h3>
@@ -43,10 +41,10 @@
 							<tbody>
 								{% for medicament in ordonance.medicaments %}
 									<tr>
-										<td>{{medicament.name}}</td>
-										<td>{{medicament.duration}}</td>
-										<td>{{medicament.category}}</td>
-										<td>{{medicament.description}}</td>
+										<td>{{ medicament.name }}</td>
+										<td>{{ medicament.duration }}</td>
+										<td>{{ medicament.category }}</td>
+										<td>{{ medicament.description }}</td>
 									</tr>
 								{% endfor %}
 							</tbody>
@@ -55,23 +53,73 @@
 					<div>
 						<a href="{{ path('app_ordonance_show', {'id': ordonance.id}) }}" class="btn">show</a>
 						<a href="{{ path('app_ordonance_edit', {'id': ordonance.id}) }}" class="btn">edit</a>
+						<a href="#" class="btn">PDF</a>
+
 					</div>
 				</div>
-
 			{% else %}
 				<tr>
 					<td colspan="3">no records found</td>
 				</tr>
 			{% endfor %}
-			<!--end table-->
+		</div>
 
+		<div class="search-container" style="margin-bottom: 20px; display: flex;justify-content:center; width: 100%;">
+			{{ knp_pagination_render(pagination) }}
 		</div>
 		<div class="search-container" style="margin-bottom: 20px; display: flex;justify-content:center; width: 100%;">
 			<a href="{{ path('app_ordonance_new') }}" class="btn">Create new</a>
 		</div>
-
 	</section>
 
+	<style>
+		.pagination {
+			display: flex;
+			list-style: none;
+			padding: 0;
+			justify-content: center;
+			gap: 0.5rem;
+			margin: 3rem 0;
+		}
+
+		.page-item {
+			display: inline-block;
+		}
+
+		.page-link {
+			display: block;
+			padding: 0.8rem 1.2rem;
+			font-size: 1.6rem;
+			color: var(--green);
+			background: #fff;
+			border: var(--border);
+			border-radius: 0.5rem;
+			box-shadow: var(--box-shadow);
+			text-decoration: none;
+			cursor: pointer;
+			transition: all 0.2s ease-out;
+		}
+
+		.page-link:hover {
+			background: var(--green);
+			color: #fff;
+		}
+
+		.page-item.active .page-link {
+			background: var(--green);
+			color: #fff;
+			cursor: default;
+		}
+
+		.page-item.disabled .page-link {
+			color: var(--light-color);
+			background: #fff;
+			border: var(--border);
+			pointer-events: none;
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+	</style>
 
 	<script>
 		function filterOrdonnances() {
@@ -91,5 +139,4 @@ card.style.display = 'none';
 });
 }
 	</script>
-
 {% endblock %}

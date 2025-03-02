@@ -10,15 +10,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 #[Route('/ordonance')]
 final class OrdonanceController extends AbstractController
 {
     #[Route(name: 'app_ordonance_index', methods: ['GET'])]
-    public function index(OrdonanceRepository $ordonanceRepository): Response
+    public function index(Request $request, OrdonanceRepository $ordonanceRepository, PaginatorInterface $paginator): Response
     {
+        $queryBuilder = $ordonanceRepository->createQueryBuilder('o');
+        $pagination = $paginator->paginate(
+            $queryBuilder, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
+
         return $this->render('ordonance/index.html.twig', [
-            'ordonances' => $ordonanceRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 
