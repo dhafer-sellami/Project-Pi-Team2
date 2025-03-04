@@ -2,6 +2,7 @@ framework:
     asset_mapper:
         # The paths to make available to the asset mapper.
         paths:
+            - 'public/Frontoffice/css'
             - assets/
         missing_import_mode: strict
 

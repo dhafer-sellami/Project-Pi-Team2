@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PriseMedicament{% endblock %}
+
+{% block body %}
+    <h1>PriseMedicament</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ prise_medicament.id }}</td>
+            </tr>
+            <tr>
+                <th>DateHeurePrise</th>
+                <td>{{ prise_medicament.dateHeurePrise ? prise_medicament.dateHeurePrise|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Pris</th>
+                <td>{{ prise_medicament.pris ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_prise_medicament_index') }}">back to list</a>
+
+    <a href="{{ path('app_prise_medicament_edit', {'id': prise_medicament.id}) }}">edit</a>
+
+    {{ include('prise_medicament/_delete_form.html.twig') }}
+{% endblock %}

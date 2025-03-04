@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PriseMedicament index{% endblock %}
+
+{% block body %}
+    <h1>PriseMedicament index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateHeurePrise</th>
+                <th>Pris</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prise_medicament in prise_medicaments %}
+            <tr>
+                <td>{{ prise_medicament.id }}</td>
+                <td>{{ prise_medicament.dateHeurePrise ? prise_medicament.dateHeurePrise|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ prise_medicament.pris ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_prise_medicament_show', {'id': prise_medicament.id}) }}">show</a>
+                    <a href="{{ path('app_prise_medicament_edit', {'id': prise_medicament.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_prise_medicament_new') }}">Create new</a>
+{% endblock %}

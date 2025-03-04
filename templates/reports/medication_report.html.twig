@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport de Suivi de Médication</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .section { margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f5f5f5; }
+        .status-success { color: green; }
+        .status-warning { color: orange; }
+        .footer { text-align: center; font-size: 12px; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Rapport de Suivi de Médication</h1>
+        <p>Patient: {{ patient.email }}</p>
+        <p>Période: {{ startDate|date('d/m/Y') }} - {{ endDate|date('d/m/Y') }}</p>
+    </div>
+
+    <div class="section">
+        <h2>Historique des Prises de Médicaments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date et Heure</th>
+                    <th>Médicament</th>
+                    <th>Dosage</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prise in medicationHistory %}
+                <tr>
+                    <td>{{ prise.dateHeurePrise|date('d/m/Y H:i') }}</td>
+                    <td>{{ prise.medicament.nom }}</td>
+                    <td>{{ prise.medicament.dosage }}</td>
+                    <td class="{{ prise.pris ? 'status-success' : 'status-warning' }}">
+                        {{ prise.pris ? 'Pris' : 'Non pris' }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Historique des Notifications</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Message</th>
+                    <th>État</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notification in notificationHistory %}
+                <tr>
+                    <td>{{ notification.dateCreation|date('d/m/Y H:i') }}</td>
+                    <td>{{ notification.type }}</td>
+                    <td>{{ notification.message }}</td>
+                    <td class="{{ notification.estLue ? 'status-success' : 'status-warning' }}">
+                        {{ notification.estLue ? 'Lu' : 'Non lu' }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p>Rapport généré le {{ "now"|date('d/m/Y H:i') }}</p>
+    </div>
+</body>
+</html>

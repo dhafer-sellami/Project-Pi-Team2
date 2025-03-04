@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport Mensuel - {{ patient.nom }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 1rem;
+        }
+        .patient-info {
+            margin-bottom: 2rem;
+        }
+        .statistiques {
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .statistiques-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .stat-item {
+            padding: 0.5rem;
+        }
+        .prises-list {
+            margin-top: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+        th {
+            background-color: #e9ecef;
+        }
+        .conforme {
+            color: #28a745;
+        }
+        .retard {
+            color: #ffc107;
+        }
+        .manquee {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Rapport Mensuel de Suivi des Médicaments</h1>
+        <h2>{{ mois|date('F Y')|capitalize }}</h2>
+    </div>
+
+    <div class="patient-info">
+        <h3>Informations du Patient</h3>
+        <p>Nom: {{ patient.nom }} {{ patient.prenom }}</p>
+        <p>ID Patient: {{ patient.id }}</p>
+    </div>
+
+    <div class="statistiques">
+        <h3>Statistiques du Mois</h3>
+        <div class="statistiques-grid">
+            <div class="stat-item">
+                <strong>Total des prises prévues:</strong> {{ statistiques.total }}
+            </div>
+            <div class="stat-item">
+                <strong>Prises à temps:</strong> {{ statistiques.prisesATemps }}
+            </div>
+            <div class="stat-item">
+                <strong>Prises en retard:</strong> {{ statistiques.prisesEnRetard }}
+            </div>
+            <div class="stat-item">
+                <strong>Prises manquées:</strong> {{ statistiques.prisesManquees }}
+            </div>
+            <div class="stat-item">
+                <strong>Taux de conformité:</strong> {{ statistiques.tauxConformite|number_format(1) }}%
+            </div>
+        </div>
+    </div>
+
+    <div class="prises-list">
+        <h3>Détail des Prises de Médicaments</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Médicament</th>
+                    <th>Heure Prévue</th>
+                    <th>Heure Effective</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prise in prises %}
+                    <tr>
+                        <td>{{ prise.heurePrevue|date('d/m/Y') }}</td>
+                        <td>{{ prise.medicament.nom }}</td>
+                        <td>{{ prise.heurePrevue|date('H:i') }}</td>
+                        <td>
+                            {% if prise.estPrise %}
+                                {{ prise.heurePrise|date('H:i') }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not prise.estPrise %}
+                                <span class="manquee">Non prise</span>
+                            {% else %}
+                                {% set delai = prise.heurePrise.diff(prise.heurePrevue).i %}
+                                {% if delai <= 15 %}
+                                    <span class="conforme">À l'heure</span>
+                                {% else %}
+                                    <span class="retard">En retard ({{ delai }} min)</span>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
