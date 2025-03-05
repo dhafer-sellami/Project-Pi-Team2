@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -19,13 +20,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    // #[Assert\Email(
+    //     message: 'The email {{ value }} is not a valid email.',
+    // )]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
-    #[ORM\Column]
-    private array $roles = [];
+    #[ORM\Column(type :'json')]
+    private  $roles = [];
+
+    private ?string $plainPassword= null;
+
+   
 
     /**
      * @var string The hashed password
@@ -35,6 +43,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $Pseudo = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $Cin = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $CreatedAt = null;
+
+    public function __construct()
+    {
+        $this->CreatedAt = new \DateTimeImmutable();
+    }
+
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword ;
+        return $this ;
+
+    }
 
     public function getId(): ?int
     {
@@ -72,6 +107,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_ADMIN';
 
         return array_unique($roles);
     }
@@ -79,7 +115,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @param list<string> $roles
      */
-    public function setRoles(array $roles): static
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -118,6 +154,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->Pseudo;
+    }
+
+    public function setPseudo(string $Pseudo): static
+    {
+        $this->Pseudo = $Pseudo;
+
+        return $this;
+    }
+
+    public function getCin(): ?int
+    {
+        return $this->Cin;
+    }
+
+    public function setCin(int $Cin): static
+    {
+        $this->Cin = $Cin;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $CreatedAt): static
+    {
+        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }
