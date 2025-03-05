@@ -7,13 +7,10 @@
         <h1 class="heading"><span>Modifier</span> Rendez-vous</h1>
 
         <div class="row1">
-            {{ form_start(form, {'attr': {'class': 'form-container'}}) }}
-                {{ form_widget(form) }}
+            
+            {{ include('rendez_vous/_form.html.twig', {'button_label': 'Update'}) }}
 
-                <button type="submit" class="btn">
-                    <i class="fa fa-edit"></i> Modifier
-                </button>
-            {{ form_end(form) }}
+               
 
             <a href="{{ path('app_rendez_vous_index') }}" class="btn">
                 <i class="fa fa-arrow-left"></i> Retour

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\RendezVous;
 use App\Form\RendezVousType;
@@ -16,15 +16,12 @@ use App\Entity\Facture;
 use App\Form\SearchRendezVousType;
 use Knp\Component\Pager\PaginatorInterface; 
 use App\Service\RendezVousHoraireService;
-use Dompdf\Dompdf;
-use Dompdf\Options;
-use App\Service\PdfService;
 
 
-#[Route('/rendez/vous')]
-final class RendezVousController extends AbstractController
+#[Route('/admin/rendez/vous')]
+final class AdminRendezVousController extends AbstractController
 {
-    #[Route(name: 'app_rendez_vous_index', methods: ['GET'])]
+    #[Route(name: 'app_admin_rendez_vous_index', methods: ['GET'])]
 public function index(Request $request, RendezVousRepository $rendezVousRepository, PaginatorInterface $paginator): Response
 {
     $form = $this->createForm(SearchRendezVousType::class);
@@ -62,7 +59,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
 
     
 
-    #[Route('/new', name: 'app_rendez_vous_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_admin_rendez_vous_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager,RendezVousHoraireService $horaireService): Response
     {
         $rendezVou = new RendezVous();
@@ -74,7 +71,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
 
             if (!$horaireService->estHoraireValide($date)) {
                 $this->addFlash('danger', 'Les rendez-vous doivent être entre 08h00 et 17h00 et aux minutes 00 ou 30.');
-                return $this->redirectToRoute('app_rendez_vous_new');
+                return $this->redirectToRoute('app_admin_rendez_vous_new');
             }
     
 
@@ -102,7 +99,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
         ]);
     }
 
-    #[Route('/rendezvous/edit/{id}', name: 'app_rendez_vous_edit')]
+    #[Route('{id}/edit', name: 'app_admin_rendez_vous_edit')]
     public function edit(Request $request, RendezVous $rendezVou, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(RendezVousType::class, $rendezVou);
@@ -111,7 +108,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_rendez_vous_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_rendez_vous_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('rendez_vous/edit.html.twig', [
@@ -120,7 +117,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
         ]);
     }
 
-    #[Route('/{id}', name: 'app_rendez_vous_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_admin_rendez_vous_delete', methods: ['POST'])]
     public function delete(Request $request, RendezVous $rendezVou, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$rendezVou->getId(), $request->getPayload()->getString('_token'))) {
@@ -128,57 +125,51 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_rendez_vous_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_rendez_vous_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/confirm/{id}', name: 'app_rendez_vous_confirm')]
-public function confirm(int $id, EntityManagerInterface $entityManager, MailerInterface $mailer, PdfService $pdfService): Response
-{
-    $rendezVous = $entityManager->getRepository(RendezVous::class)->find($id);
+    #[Route('/confirm/{id}', name: 'app_admin_rendez_vous_confirm')]
+    public function confirm(int $id, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    {
+        $rendezVous = $entityManager->getRepository(RendezVous::class)->find($id);
 
-    if (!$rendezVous) {
-        throw $this->createNotFoundException('Rendez-vous non trouvé.');
+        if (!$rendezVous) {
+            throw $this->createNotFoundException('Rendez-vous non trouvé.');
+        }
+
+        // Vérifier s'il existe une facture associée
+        $facture = $entityManager->getRepository(Facture::class)->findOneBy(['idrdv' => $rendezVous]);
+
+        if (!$facture) {
+            throw new \Exception('Aucune facture associée à ce rendez-vous.');
+        }
+
+        
+        $emailPatient = $rendezVous->getEmail(); 
+
+        // Créer et envoyer l'e-mail
+        $email = (new Email())
+            ->from('ESP8266ARDPROJ@gmail.com')
+            ->to($emailPatient)
+            ->subject('Confirmation de votre rendez-vous')
+            ->html("
+                <p>Bonjour,</p>
+                <p>Votre rendez-vous du <strong>{$rendezVous->getDate()->format('Y-m-d H:i')}</strong> a été confirmé.</p>
+                <p>Le prix de la consultation est de <strong>{$facture->getPrix()}€</strong>.</p>
+                <p>Cordialement,</p>
+                <p>Votre clinique</p>
+            ");
+
+        $mailer->send($email);
+       
+        
+
+
+        $this->addFlash('success', 'Le rendez-vous a été confirmé et un e-mail a été envoyé.');
+       
+
+        return $this->redirectToRoute('app_admin_rendez_vous_index');
     }
-
-    $facture = $entityManager->getRepository(Facture::class)->findOneBy(['idrdv' => $rendezVous]);
-
-    if (!$facture) {
-        throw new \Exception('Aucune facture associée à ce rendez-vous.');
-    }
-
-    $emailPatient = $rendezVous->getEmail(); 
-
-    
-    $html = $this->renderView('facture/pdf.html.twig', [
-        'facture' => $facture,
-        'rendezVous' => $rendezVous,
-    ]);
-
-    
-    $pdfContent = $pdfService->generatePdf($html);
-
-    
-    $email = (new Email())
-        ->from('ESP8266ARDPROJ@gmail.com')
-        ->to($emailPatient)
-        ->subject('Confirmation de votre rendez-vous')
-        ->html("
-            <p>Bonjour,</p>
-            <p>Votre rendez-vous du <strong>{$rendezVous->getDate()->format('Y-m-d H:i')}</strong> a été confirmé.</p>
-            <p>Le prix de la consultation est de <strong>{$facture->getPrix()}D</strong>.</p>
-           
-            
-        ")
-        ->attach($pdfContent, 'facture.pdf', 'application/pdf'); 
-
-    
-    $mailer->send($email);
-
-    
-    $this->addFlash('success', 'Le rendez-vous a été confirmé et un e-mail a été envoyé.');
-
-    return $this->redirectToRoute('app_rendez_vous_index');
-}
 
 
 

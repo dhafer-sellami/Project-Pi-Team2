@@ -606,6 +606,8 @@ section:nth-child(even){
     justify-content: center;
     border-radius: 10px;
     background: white;
+    border-radius: 5px;
+    
     
     
    
@@ -613,18 +615,19 @@ section:nth-child(even){
 
 /* Style du tableau */
 .adem-table {
-    width: 80%;
+    width: 170%; /* Le tableau prendra toute la largeur disponible */
+    
     border-collapse: collapse;
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    
-    
-    border: 5px solid #16a085;
-   
-    border-radius: 10px;
+    border: 2px solid #16a085;
+    border-radius: 5px;
     
 }
-
+.adem-table tr {
+    height: 30px; /* Ajuste la hauteur des lignes */
+   
+}
 /* Style des en-têtes */
 .adem-table th {
     background: #16a085;
@@ -632,19 +635,20 @@ section:nth-child(even){
     font-weight: bold;
     padding: 15px;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
+    padding: 5px 10px; /* Réduit l'espacement interne des cellules */
+   
+    
     
     
 }
 
 /* Style des cellules */
 .adem-table td {
-    padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    font-size: 14px;
-    color: #333;
+    padding: 5px 8px; /* Réduit l’espace intérieur */
+    font-size: 14px; /* Diminue la taille du texte */
+    height: 40px; 
 }
 
 
@@ -664,11 +668,13 @@ section:nth-child(even){
 
 /* Boutons d'action */
 .adem-table .btn {
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 4px 8px; /* Réduire la taille des boutons */
+    font-size: 12px;
+    border-radius: 4px;
+    display: inline-flex; /* Permet d'aligner les icônes et le texte */
+    align-items: center;
+    gap: 5px; /* Espace entre l’icône et le texte */
     text-decoration: none;
-    color: white;
-    font-size: 14px;
     transition: 0.3s ease;
 }
 
@@ -709,26 +715,22 @@ section:nth-child(even){
     border-radius: 5px;
 }
 .conteneur {
-    display: flex;          
-    align-items: center;  /* Aligner le tableau et l’image */
-    justify-content: space-between; /* Espacement entre eux */
-    width: 100%; /* Utiliser toute la largeur disponible */
+    display: flex;
+    justify-content: center; /* Centre le tableau */
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
    
 }
 
 .adem-table {
-    width: 80%; /* Garde le tableau assez large */
-    max-width: 800px; /* Évite qu'il devienne trop grand */
-    min-width: 500px; /* Empêche qu'il devienne trop petit */
-}
-
-
-
-.conteneur img {
-   
+    width: 180%; /* Garde le tableau assez large */
     
-    margin-left: 20px; /* Espacement entre l'image et le tableau */
 }
+
+
+
+
 
 .btn-danger {
     font-weight: bold;
@@ -736,7 +738,7 @@ section:nth-child(even){
 
 .headingt {
     position: relative;
-    left: 130px; /* Décale le texte vers la droite sans toucher les autres éléments */
+    left: 10px; /* Décale le texte vers la droite sans toucher les autres éléments */
     
 }
 
@@ -850,4 +852,35 @@ section:nth-child(even){
     font-size: 12px;
     display: block;
 }
+
+.pagination-container {
+    text-align: center; /* Centre la pagination */
+    margin-top: 20px;   /* Espace entre le tableau et la pagination */
+}
+
+.pagination-container .pagination {
+    display: inline-block;
+}
+
+.pagination a, .pagination span {
+    color: #16a085; /* Couleur des liens */
+    float: none;
+    padding: 4px 8px;
+    text-decoration: none;
+    
+    margin: 0 2px;
+    background-color: #fff;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination .current {
+    background-color: #16a085;
+    color: #fff;
+    border-color: #16a085;
+}
+
+
 

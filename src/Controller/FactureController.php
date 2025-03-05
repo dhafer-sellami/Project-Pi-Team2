@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\RendezVousRepository;
+use App\Service\PdfService;
+
+
 
 #[Route('/facture')]
 final class FactureController extends AbstractController
@@ -98,4 +101,21 @@ final class FactureController extends AbstractController
 
         return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/pdf/{id}', name: 'app_facture_pdf')]
+    public function generateFacturePdf(int $id, EntityManagerInterface $entityManager, PdfService $pdfService): Response
+     {
+        $facture = $entityManager->getRepository(Facture::class)->find($id);
+
+        if (!$facture) {
+          throw $this->createNotFoundException('Facture non trouvée.');
+        }
+
+    
+        $html = $this->renderView('facture/pdf.html.twig', [
+          'facture' => $facture,
+     ]);
+
+   
+    return $pdfService->generatePdf($html);
+}
 }
