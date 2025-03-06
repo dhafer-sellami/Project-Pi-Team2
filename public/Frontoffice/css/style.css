@@ -716,7 +716,7 @@ section:nth-child(even){
 }
 .conteneur {
     display: flex;
-    justify-content: center; /* Centre le tableau */
+    justify-content: center; 
     align-items: center;
     width: 100%;
     border-radius: 10px;
@@ -724,8 +724,7 @@ section:nth-child(even){
 }
 
 .adem-table {
-    width: 180%; /* Garde le tableau assez large */
-    
+    width: 180%;
 }
 
 
@@ -738,7 +737,7 @@ section:nth-child(even){
 
 .headingt {
     position: relative;
-    left: 10px; /* Décale le texte vers la droite sans toucher les autres éléments */
+    left: 10px; 
     
 }
 
@@ -759,20 +758,19 @@ section:nth-child(even){
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: center; /* Centrer horizontalement */
+    justify-content: center; 
 }
 
 
 .book .row1 form{
-    flex: 1 1 35rem; /* Réduction de la taille */
-    max-width: 400px; /* Largeur max */
-    background: #fff;
+    flex: 1 1 35rem; 
+    max-width: 400px; 
     border: var(--border);
     box-shadow: var(--box-shadow);
     text-align: center;
-    padding: 1.5rem; /* Réduction du padding */
+    padding: 1.5rem; 
     border-radius: .5rem;
-    margin: auto; /* Centrer */
+    margin: auto; 
 }
 .book .row1 form h3{
     color: var(--black);
@@ -806,11 +804,11 @@ section:nth-child(even){
 
 }
 
-/* Style du formulaire */
+
 .form-container {
-    flex: 1; /* Prend la place restante */
-    min-width: 300px; /* Largeur minimale */
-    max-width: 500px; /* Largeur maximale */
+    flex: 1; 
+    min-width: 300px;
+    max-width: 500px; 
     background: #fff;
     padding: 1.5rem;
     border-radius: 0.5rem;
@@ -818,12 +816,12 @@ section:nth-child(even){
    
 }
 
-/* Style de l'image */
+
 .image-container {
-    flex: 1; /* Prend aussi la place restante */
-    min-width: 300px; /* Largeur minimale pour l'image */
-    max-width: 500px; /* Limite la taille de l'image */
-    text-align: center; /* Centrer l'image à l'intérieur du conteneur */
+    flex: 1; 
+    min-width: 300px; 
+    max-width: 500px; 
+    text-align: center; 
 }
 
 /* Ajustement de l'image */
@@ -854,8 +852,8 @@ section:nth-child(even){
 }
 
 .pagination-container {
-    text-align: center; /* Centre la pagination */
-    margin-top: 20px;   /* Espace entre le tableau et la pagination */
+    text-align: center; 
+    margin-top: 20px;   
 }
 
 .pagination-container .pagination {
@@ -863,7 +861,7 @@ section:nth-child(even){
 }
 
 .pagination a, .pagination span {
-    color: #16a085; /* Couleur des liens */
+    color: #16a085; 
     float: none;
     padding: 4px 8px;
     text-decoration: none;
@@ -881,6 +879,49 @@ section:nth-child(even){
     color: #fff;
     border-color: #16a085;
 }
+
+
+
+.search-form {
+    
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.search-form input.form-control {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    
+}
+
+
+.search-form button.btn-primary {
+    margin-top: 20px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    background-color:white;
+    color:  #16a085;
+    border: none;
+}
+
+.search-form button.btn-primary:hover {
+    background-color: #16a085;
+    color:  white;
+
+}
+
+
+
+
+
+
+
+
 
 
 

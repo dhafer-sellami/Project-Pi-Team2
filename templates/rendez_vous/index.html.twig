@@ -9,10 +9,8 @@
     <h1 class="headingt"><span>Liste des</span> Rendez-vous</h1>
 
 
-    <form method="get" action="{{ path('app_rendez_vous_index') }}">
-    {{ form_widget(searchForm) }}
-    
-    
+    <form method="get" action="{{ path('app_rendez_vous_index') }}" class="search-form">
+       {{ form_widget(searchForm) }}
     </form>
 
 
@@ -30,7 +28,7 @@
             <tr>
                 <th><h1><strong>id</strong></h1></th>
                 <th><h1><strong>Date</strong></h1></th>
-                <th><h1><strong>Etat</strong></h1></th>
+                <th><h1><strong>Nom</strong></h1></th>
                 <th><h1><strong>Email</strong></h1></th>
                 <th><h1><strong>Num</strong></h1></th>
                 <th><h1><strong>Action</strong></h1></th>
@@ -47,9 +45,9 @@
                     </td>
                     <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d H:i:s') : '' }}</td>
                     
-                    <td>{{ rendez_vou.email }}</td>
-                    <td>{{ rendez_vou.num }}</td>
                     <td>{{ rendez_vou.etat }}</td>
+                    <td>{{ rendez_vou.num }}</td>
+                    <td>{{ rendez_vou.email }}</td>
                     <td>
                       <a href="{{ path('app_facture_new', {'rdvid': rendez_vou.id}) }}" class="btn">
                         <i class="fas fa-edit"></i> Modifier prix

@@ -25,6 +25,17 @@
 {% endfor %}
 
 
+{{ form_widget(form.etat, {'attr': {'type':'string', 'class': 'box', 'id':'etat', 'placeholder': 'Saisissez votre nom'}}) }}
+
+{% if form.etat.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.etat.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
 {{ form_widget(form.email, {'attr': {'type':'number', 'class': 'box', 'id':'email'}}) }}
 {% if form.email.vars.errors|length > 0 %}
     <div class="alert alert-danger">
@@ -46,15 +57,7 @@
 {% endif %}
 
 
-{{ form_widget(form.etat, {'attr': {'type':'string', 'class': 'box', 'id':'etat', 'placeholder': 'Saisissez votre etat'}}) }}
 
-{% if form.etat.vars.errors|length > 0 %}
-    <div class="alert alert-danger">
-        {% for error in form.etat.vars.errors %}
-            {{ error.message }}<br>
-        {% endfor %}
-    </div>
-{% endif %}
 
 
 

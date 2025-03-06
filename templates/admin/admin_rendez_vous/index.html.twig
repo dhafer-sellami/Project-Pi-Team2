@@ -1,20 +1,64 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseB.html.twig' %}
 
-{% block title %}Hello AdminRendezVousController!{% endblock %}
+{% block title %}Liste des Rendez-vous{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block section %}
+	<div class="container-fluid px-4">
+		<h1 class="mt-4">Liste des rendez-vous</h1>
+		
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table me-1"></i> Gestion des rendez-vous
+			</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            
+            <form method="get" action="{{ path('app_admin_rendez_vous_index') }}" class="mb-3">
+                {{ form_widget(searchForm) }}
+                
+            </form>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/ademb/OneDrive/Desktop/proj777/Project-Pi-Team2/src/Controller/admin/AdminRendezVousController.php</code></li>
-        <li>Your template at <code>C:/Users/ademb/OneDrive/Desktop/proj777/Project-Pi-Team2/templates/admin/admin_rendez_vous/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+			<div class="card-body">
+				<table id="datatablesSimple">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Numéro</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for rendez_vou in rendez_vouses %}
+							<tr>
+							    <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ rendez_vou.etat }}</td>  
+                                <td>{{ rendez_vou.email }}</td>
+                                <td>{{ rendez_vou.num }}</td>
+                                <td>
+									<a href="{{ path('app_admin_rendez_vous_edit', {'id': rendez_vou.id}) }}" class="btn btn-warning">Modifier</a>
+                                    <form method="post" action="{{ path('app_admin_rendez_vous_delete', {'id': rendez_vou.id}) }}" 
+                                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?');" 
+                                          style="display:inline;">
+                                       <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rendez_vou.id) }}">
+                                       <button type="submit" class="btn btn-danger"> <i class="fa fa-trash"></i> Supp</button>
+                                    </form>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">Aucun rendez-vous trouvé</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+               
+
+			</div>
+
+             <div class="pagination">
+                   {{ knp_pagination_render(rendez_vouses) }}
+             </div>
+		</div>
+	{% endblock %}

@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use App\Entity\Facture;
-use App\Form\SearchRendezVousType;
+use App\Form\Search2RendezVousType;
 use Knp\Component\Pager\PaginatorInterface; 
 use App\Service\RendezVousHoraireService;
 
@@ -24,7 +24,7 @@ final class AdminRendezVousController extends AbstractController
     #[Route(name: 'app_admin_rendez_vous_index', methods: ['GET'])]
 public function index(Request $request, RendezVousRepository $rendezVousRepository, PaginatorInterface $paginator): Response
 {
-    $form = $this->createForm(SearchRendezVousType::class);
+    $form = $this->createForm(Search2RendezVousType::class);
     $form->handleRequest($request);
 
     $queryBuilder = $rendezVousRepository->createQueryBuilder('r')
@@ -33,15 +33,10 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
     if ($form->isSubmitted() && $form->isValid()) {
         $criteria = $form->getData();
 
-        if (!empty($criteria['date'])) {
-            
-            $start = (clone $criteria['date'])->setTime(0, 0, 0);
-            $end   = (clone $criteria['date'])->setTime(23, 59, 59);
-            $queryBuilder->andWhere('r.date BETWEEN :start AND :end')
-                         ->setParameter('start', $start)
-                         ->setParameter('end', $end);
+        if (!empty($criteria['etat'])) {
+            $queryBuilder->andWhere('r.etat LIKE :etat')
+                         ->setParameter('etat', '%' . $criteria['etat'] . '%');
         }
-
         
     }
 
@@ -51,7 +46,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
         5
     );
 
-    return $this->render('rendez_vous/index.html.twig', [
+    return $this->render('admin/admin_rendez_vous/index.html.twig', [
         'rendez_vouses' => $pagination,
         'searchForm' => $form->createView(),
     ]);
@@ -137,7 +132,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
             throw $this->createNotFoundException('Rendez-vous non trouvé.');
         }
 
-        // Vérifier s'il existe une facture associée
+       
         $facture = $entityManager->getRepository(Facture::class)->findOneBy(['idrdv' => $rendezVous]);
 
         if (!$facture) {
@@ -147,7 +142,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
         
         $emailPatient = $rendezVous->getEmail(); 
 
-        // Créer et envoyer l'e-mail
+       
         $email = (new Email())
             ->from('ESP8266ARDPROJ@gmail.com')
             ->to($emailPatient)
@@ -155,7 +150,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
             ->html("
                 <p>Bonjour,</p>
                 <p>Votre rendez-vous du <strong>{$rendezVous->getDate()->format('Y-m-d H:i')}</strong> a été confirmé.</p>
-                <p>Le prix de la consultation est de <strong>{$facture->getPrix()}€</strong>.</p>
+                <p>Le prix de la consultation est de <strong>{$facture->getPrix()}D</strong>.</p>
                 <p>Cordialement,</p>
                 <p>Votre clinique</p>
             ");

@@ -8,18 +8,17 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class SearchRendezVousType extends AbstractType
+class Search2RendezVousType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', DateType::class, [
-                'widget' => 'single_text',
-                'required' => false,
-                'attr' => ['class' => 'form-control'],
-            ])
+           
 
-            
+            ->add('etat', TextType::class, [  
+                'required' => false,
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Rechercher par nom'],
+            ])
 
 
            
