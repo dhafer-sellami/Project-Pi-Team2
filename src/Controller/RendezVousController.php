@@ -24,7 +24,7 @@ use App\Service\PdfService;
 #[Route('/rendez/vous')]
 final class RendezVousController extends AbstractController
 {
-    #[Route(name: 'app_rendez_vous_index', methods: ['GET'])]
+ #[Route(name: 'app_rendez_vous_index', methods: ['GET'])]
 public function index(Request $request, RendezVousRepository $rendezVousRepository, PaginatorInterface $paginator): Response
 {
     $form = $this->createForm(SearchRendezVousType::class);
@@ -75,6 +75,7 @@ public function index(Request $request, RendezVousRepository $rendezVousReposito
             if (!$horaireService->estHoraireValide($date)) {
                 $this->addFlash('danger', 'Les rendez-vous doivent être entre 08h00 et 17h00 et aux minutes 00 ou 30.');
                 return $this->redirectToRoute('app_rendez_vous_new');
+
             }
     
 

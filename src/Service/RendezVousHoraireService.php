@@ -1,5 +1,5 @@
 <?php
-namespace App\Service;  // Assure-toi que le namespace est "App\Service"
+namespace App\Service;  
 
 class RendezVousHoraireService
 {
