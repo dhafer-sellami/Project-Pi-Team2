@@ -106,7 +106,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_PATIENT';
+        $roles[] = 'ROLE_DOCTOR';
+        $roles[] = 'ROLE_ASSISTANT';
         $roles[] = 'ROLE_ADMIN';
 
         return array_unique($roles);

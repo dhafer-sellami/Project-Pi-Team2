@@ -1,0 +1,248 @@
+/* MediTrack Authentication Pages Styles */
+:root {
+    --primary-color: #16a085;
+    --secondary-color: #1abc9c;
+    --accent-color: #e74c3c;
+    --info-color: #3498db;
+    --light-color: #f5f8fa;
+    --dark-color: #2c3e50;
+    --text-color: #333;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  /* General Form Container */
+  .home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 80vh;
+  }
+  
+  /* Form Container */
+  .form-container {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  }
+  
+  /* Page Title */
+  h1 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Alert Styling */
+  .alert {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+  }
+  
+  .alert-danger {
+    background-color: #fde8e8;
+    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+  }
+  
+  .alert-info {
+    background-color: #e6f3fb;
+    color: var(--info-color);
+    border-left: 4px solid var(--info-color);
+  }
+  
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Form Labels */
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  /* Form Inputs */
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+  
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.2);
+    outline: none;
+  }
+  
+  /* Radio Buttons for Roles */
+  .roles-container {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .role-option {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .role-option input[type="radio"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+  
+  /* Checkbox for Terms and Remember Me */
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Submit Button */
+  .btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+  
+  .btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+  }
+  
+  .btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Links below forms */
+  .additional-links {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  p {
+    margin: 0.75rem 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+  }
+  
+  p a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+  }
+  
+  p a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+  }
+  
+  /* Form Errors */
+  .form-error {
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  
+  .form-errors {
+    color: var(--accent-color);
+    background-color: rgba(231, 76, 60, 0.1);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 576px) {
+    .form-container {
+      padding: 1.5rem;
+    }
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    .roles-container {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+  
+  /* Apply these styles to your forms */
+  #registration_form,
+  #login_form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Target Symfony's form rows */
+  div[id^="registration_form"],
+  div[id^="login_form"] {
+    margin-bottom: 1rem;
+  }
+  
+  /* Target Symfony's form errors */
+  .invalid-feedback {
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* Add some styling to help-blocks in forms */
+  .help-block {
+    color: #6c757d;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }

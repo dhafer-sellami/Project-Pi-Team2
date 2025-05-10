@@ -1,12 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Reset Your Password{% endblock %}
 
 {% block body %}
-    <h1>Reset your password</h1>
+<div class="home">
+    <div class="form-container">
+        <h1>Reset Your Password</h1>
 
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
-    {{ form_end(resetForm) }}
+        {% for message in app.flashes('reset_password_error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(resetForm, {'attr': {'id': 'reset_password_form'}}) }}
+            <div class="form-group">
+                {{ form_label(resetForm.plainPassword) }}
+                {{ form_widget(resetForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(resetForm.plainPassword) }}
+            </div>
+
+            <button type="submit" class="btn">Reset Password</button>
+        {{ form_end(resetForm) }}
+
+        <div class="additional-links">
+            <p><a href="{{ path('app_login') }}">Back to Login</a></p>
+        </div>
+    </div>
+</div>
 {% endblock %}

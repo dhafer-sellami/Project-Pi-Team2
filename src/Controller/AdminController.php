@@ -20,6 +20,5 @@ final class AdminController extends AbstractController{
             true => $this->render("admin/index.html.twig"),
             false =>  $this->render("admin/please-verify-email.html.twig"),
         };
-        // return $this->render('admin/index.html.twig')
     }
 }

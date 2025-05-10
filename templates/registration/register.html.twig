@@ -3,22 +3,51 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <div class="form-container">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
 
-    <h1>Register</h1>
+        <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+        {% if form_errors(registrationForm) %}
+            <div class="form-errors">
+                {{ form_errors(registrationForm) }}
+            </div>
+        {% endif %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_start(registrationForm, {'attr': {'id': 'registration_form'}}) }}
+            <div class="form-group">
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(registrationForm.email, {'attr': {'class': 'form-error'}}) }}
+            </div>
+            
+            <div class="form-group">
+                {{ form_label(registrationForm.plainPassword, 'Password') }}
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(registrationForm.plainPassword, {'attr': {'class': 'form-error'}}) }}
+            </div>
+            
+            <div class="form-group">
+                {{ form_label(registrationForm.roles) }}
+                <div class="roles-container">
+                    {{ form_widget(registrationForm.roles) }}
+                </div>
+                {{ form_errors(registrationForm.roles, {'attr': {'class': 'form-error'}}) }}
+            </div>
+            
+            <div class="form-group">
+                <div class="checkbox-container">
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                    {{ form_label(registrationForm.agreeTerms) }}
+                </div>
+                {{ form_errors(registrationForm.agreeTerms, {'attr': {'class': 'form-error'}}) }}
+            </div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-    <p> do you already have an email ? <a href="{{ path('app_login') }}">click here to login</a></p>
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+        
+        <p>Do you already have an account? <a href="{{ path('app_login') }}">Click here to login</a></p>
+    </div>
 {% endblock %}

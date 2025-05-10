@@ -1,4 +1,104 @@
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare | Hospital Website</title> 
+    
+    <link rel="shortcut icon" href="{{ asset('Frontoffice/image/heartbeat-solid.svg') }}" type="image/x-icon">   
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+    <link rel="stylesheet" href="{{ asset('Frontoffice/css/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontoffice/css/style.css') }}">
+</head>
+<body>
+    
+    <div class="header">
+        <a href="#" class="logo"><i class="fas fa-heartbeat"></i> MediTrack.</a>
+        <nav class="navbar">
+            <a href="{{ path('app_admin') }}">Home</a>
+            {# <a href="#about">About</a>
+            <a href="#doctors">Doctors</a>
+            <a href="#book">Book an Appointment</a> #}
+            <a href="{{ path('app_login') }}">Sign In</a>    
+            <a href="{{ path('app_register') }}">Sign Up</a>
+
+        </nav>
+        <div id="menu-btn" class="fas fa-bars"></div>
+    </div>
+   
+    <section class="home" id="home">
+        {% block body %}
+        {% endblock %}
+    </section>
+
+    
+    
+    <section class="footer">
+        <div class="credit">Created by <span>Team2</span> | Projet Pi Symfony</div>
+    </section>
+    
+
+    <script src="{{ asset('Frontoffice/js/script.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,4 +113,4 @@
     <body>
         {% block body %}{% endblock %}
     </body>
-</html>
+</html> #}
