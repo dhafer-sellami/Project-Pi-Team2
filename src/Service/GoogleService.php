@@ -5,11 +5,7 @@ use Exception;
 use Google\Client;
 use Google\Service\Calendar\Event as Google_Service_Calendar_Event;
 use Google\Service\Calendar as Google_Service_Calendar;
-use Google\Service\Calendar\Events as Google_Service_Calendar_Events;
-use Google\Service\Calendar\EventsListResponse as Google_Service_Calendar_EventsListResponse;
-
 use Psr\Log\LoggerInterface;
-use Google\Service\Calendar ;
 use RuntimeException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
