@@ -1,0 +1,70 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+{{ form_start(form, {'attr': {'id': 'rendezvous-form'}}) }}
+
+<h3 class="heading"><span>PRENDRE UN RENDEZ VOUS</span> </h3>
+
+<div class="custom-label">
+    {{ form_label(form.date, "Date d'inscription") }}
+</div>
+{{ form_widget(form.date, {'attr': {'type':'datetime-local', 'class': 'box', 'id':'date'}}) }}
+
+
+
+
+{% if form.date.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.date.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+{% for message in app.flashes('danger') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+
+
+{{ form_widget(form.etat, {'attr': {'type':'string', 'class': 'box', 'id':'etat', 'placeholder': 'Saisissez votre nom'}}) }}
+
+{% if form.etat.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.etat.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{{ form_widget(form.email, {'attr': {'type':'number', 'class': 'box', 'id':'email'}}) }}
+{% if form.email.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.email.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{{ form_widget(form.num, {'attr': {'type':'number', 'class': 'box', 'id':'num', 'placeholder': 'Saisissez votre numéro'}}) }}
+
+{% if form.num.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.num.vars.errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+
+
+
+
+
+
+{{ form_widget(form.save, {'label':'Ajouter','attr':{'class':'btn'}}) }}
+
+{{ form_end(form) }}
+

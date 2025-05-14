@@ -1,0 +1,64 @@
+{% extends 'baseB.html.twig' %}
+
+{% block title %}Liste des Rendez-vous{% endblock %}
+
+{% block section %}
+	<div class="container-fluid px-4">
+		<h1 class="mt-4">Liste des rendez-vous</h1>
+		
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table me-1"></i> Gestion des rendez-vous
+			</div>
+
+            
+            <form method="get" action="{{ path('app_admin_rendez_vous_index') }}" class="mb-3">
+                {{ form_widget(searchForm) }}
+                
+            </form>
+
+			<div class="card-body">
+				<table id="datatablesSimple">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Numéro</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for rendez_vou in rendez_vouses %}
+							<tr>
+							    <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ rendez_vou.etat }}</td>  
+                                <td>{{ rendez_vou.email }}</td>
+                                <td>{{ rendez_vou.num }}</td>
+                                <td>
+									<a href="{{ path('app_admin_rendez_vous_edit', {'id': rendez_vou.id}) }}" class="btn btn-warning">Modifier</a>
+                                    <form method="post" action="{{ path('app_admin_rendez_vous_delete', {'id': rendez_vou.id}) }}" 
+                                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?');" 
+                                          style="display:inline;">
+                                       <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rendez_vou.id) }}">
+                                       <button type="submit" class="btn btn-danger"> <i class="fa fa-trash"></i> Supp</button>
+                                    </form>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">Aucun rendez-vous trouvé</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+               
+
+			</div>
+
+             <div class="pagination">
+                   {{ knp_pagination_render(rendez_vouses) }}
+             </div>
+		</div>
+	{% endblock %}

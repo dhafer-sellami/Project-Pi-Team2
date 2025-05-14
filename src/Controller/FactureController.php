@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Facture;
+use App\Form\FactureType;
+use App\Repository\FactureRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\RendezVousRepository;
+use App\Service\PdfService;
+
+
+
+#[Route('/facture')]
+final class FactureController extends AbstractController
+{
+    #[Route(name: 'app_facture_index', methods: ['GET'])]
+    public function index(FactureRepository $factureRepository): Response
+    {
+        return $this->render('facture/index.html.twig', [
+            'factures' => $factureRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/new/{rdvid}', name: 'app_facture_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager , RendezVousRepository $rendezVousRepository, int $rdvid  ): Response
+    {
+        $facture = new Facture();
+
+
+
+        if ($rdvid) {
+            $rendezVous = $rendezVousRepository->find($rdvid);
+            
+            if (!$rendezVous) {
+                throw $this->createNotFoundException('Le rendez-vous spécifié n\'existe pas.');
+            }
+    
+            $facture->setIdrdv($rendezVous);
+        }
+
+
+
+        $form = $this->createForm(FactureType::class, $facture);
+        $form->handleRequest($request);
+
+        
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->persist($facture);
+            $entityManager->flush();
+
+            return $this->render('Facture/index3.html.twig');
+        }
+        
+        
+        return $this->render('facture/new.html.twig', [
+            'facture' => $facture,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_facture_show', methods: ['GET'])]
+    public function show(Facture $facture): Response
+    {
+        return $this->render('facture/show.html.twig', [
+            'facture' => $facture,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_facture_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Facture $facture, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(FactureType::class, $facture);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('facture/edit.html.twig', [
+            'facture' => $facture,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_facture_delete', methods: ['POST'])]
+    public function delete(Request $request, Facture $facture, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$facture->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($facture);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/pdf/{id}', name: 'app_facture_pdf')]
+    public function generateFacturePdf(int $id, EntityManagerInterface $entityManager, PdfService $pdfService): Response
+     {
+        $facture = $entityManager->getRepository(Facture::class)->find($id);
+
+        if (!$facture) {
+          throw $this->createNotFoundException('Facture non trouvée.');
+        }
+
+    
+        $html = $this->renderView('facture/pdf.html.twig', [
+          'facture' => $facture,
+     ]);
+
+   
+    return $pdfService->generatePdf($html);
+}
+}

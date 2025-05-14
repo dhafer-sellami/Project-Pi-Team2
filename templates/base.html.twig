@@ -1,18 +1,21 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicare | Hospital Website</title> 
+    <title>Medcare | Hospital Website</title> 
     <!-- Page Icon -->
-     <link rel="shortcut icon" href="{{ asset('Frontoffice/image/heartbeat-solid.svg') }}" type="image/x-icon">   
+    <link rel="shortcut icon" href="{{asset('Frontoffice/image/heartbeat-solid.svg')}}" type="image/x-icon">   
     <!-- font-awesome -->
-    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css') }} ">
+    <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')}} "/>
     <!-- Custom Css File Link -->
     <link rel="stylesheet" href="{{ asset('Frontoffice/css/style-seif-aridhi.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontoffice/css/style.css') }}">
 
+    <link rel="stylesheet" href="{{asset('Frontoffice/css/style.css')}}">
 </head>
 <body>
     <!-- Header Section Starts -->
@@ -43,9 +46,16 @@
 
 
    
+      
+    </section>
+    <!-- icons section End  -->
+
+   
+
     <!-- Footer section Starts  -->
     <section class="footer">
         <div class="credit">created by <span>zaki chowdhury</span> | all right reserved</div>
+        <div class="credit">created by <span>MediTrack</span> | all right reserved</div>
     </section>
     <!-- Footer section End  -->
 
@@ -60,6 +70,6 @@
 
 
     <!-- custom js file link  -->
-    <script src="{{ asset('Frontoffice/js/script.js') }}"></script>
+    <script src="{{asset('Frontoffice/js/script.js')}}"></script>
 </body>
 </html>

@@ -289,21 +289,26 @@ section:nth-child(even){
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
+    justify-content: center; /* Centrer horizontalement */
 }
 .book .row .image{
-    flex: 1 1 45rem;
+    flex: 1 1 40rem;
+    display: flex;
+    justify-content: flex-end; /* Aligner l'image à droite */
 }
 .book .row .image img{
     width: 100%;
 }
 .book .row form{
-    flex: 1 1 45rem;
+    flex: 1 1 35rem; /* Réduction de la taille */
+    max-width: 400px; /* Largeur max */
     background: #fff;
     border: var(--border);
     box-shadow: var(--box-shadow);
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem; /* Réduction du padding */
     border-radius: .5rem;
+    margin: auto; /* Centrer */
 }
 .book .row form h3{
     color: var(--black);
@@ -472,13 +477,52 @@ section:nth-child(even){
 } 
 /* Footer section End */
 
+/* list medicament start*/
+.table-container {
+    flex: 1 1 45rem;
+    background: #fff;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    border-radius: .5rem;
+    overflow-x: auto;
+}
+
+.medication-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.medication-table th, .medication-table td {
+    border: var(--border);
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: var(--black);
+}
+
+.medication-table th {
+    background: var(--green);
+    color: white;
+}
+
+.medication-table .btn {
+    padding: .5rem 2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
 
 
+/* list medicament ends*/
 
-
-
-
-
+/* custom css code for seif eddine aridhi start*/
+.vertical-layout {
+    display: flex;
+    flex-direction: column; /* Arrange items in a vertical column */
+    align-items: center; /* Center items horizontally */
+    gap: 1rem; /* Add spacing between items */
+}
+/* custom css code for seif eddine aridhi ends*/
 
 
 /* media queries  */
@@ -537,3 +581,347 @@ section:nth-child(even){
     }
 
 }
+/* Liste des rendez-vous */
+.appointments {
+    padding:  20px 50px; 
+    justify-content: space-between;
+    
+    
+   
+    align-items: center; /* Centre le contenu horizontalement */
+    text-align: center; /* Centre le texte */
+    border-radius: 10px;
+    
+    
+    
+}
+
+
+/* Conteneur du tableau */
+.table1-container {
+    width: 90%;
+    margin: auto;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    background: white;
+    border-radius: 5px;
+    
+    
+    
+   
+}
+
+/* Style du tableau */
+.adem-table {
+    width: 170%; /* Le tableau prendra toute la largeur disponible */
+    
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #16a085;
+    border-radius: 5px;
+    
+}
+.adem-table tr {
+    height: 30px; /* Ajuste la hauteur des lignes */
+   
+}
+/* Style des en-têtes */
+.adem-table th {
+    background: #16a085;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 5px 10px; /* Réduit l'espacement interne des cellules */
+   
+    
+    
+    
+}
+
+/* Style des cellules */
+.adem-table td {
+    padding: 5px 8px; /* Réduit l’espace intérieur */
+    font-size: 14px; /* Diminue la taille du texte */
+    height: 40px; 
+}
+
+
+
+/* Alternance des couleurs des lignes */
+.adem-table tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+/* Effet au survol */
+.adem-table tbody tr:hover {
+    background: #d1f0ec;
+    transition: 0.3s ease-in-out;
+}
+
+
+
+/* Boutons d'action */
+.adem-table .btn {
+    padding: 4px 8px; /* Réduire la taille des boutons */
+    font-size: 12px;
+    border-radius: 4px;
+    display: inline-flex; /* Permet d'aligner les icônes et le texte */
+    align-items: center;
+    gap: 5px; /* Espace entre l’icône et le texte */
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.adem-table .btn:first-child {
+    background: #d9534f; /* Rouge pour refuser */
+}
+.adem-table .btn:first-child:hover {
+    background: #b52b27; /* Rouge plus foncé */
+    transform: scale(1.05); /* Effet zoom */
+}
+
+.adem-table .btn:nth-child(2) {
+    background: #5cb85c; /* Vert pour "Accepter" */
+    color: white;
+    font-weight: bold;
+}
+.adem-table .btn:nth-child(2):hover {
+    background: #3d8b40; /* Vert plus foncé */
+    transform: scale(1.05);
+}
+
+.adem-table .btn:last-child {
+    background: #d9534f; /* Rouge pour refuser */
+}
+.adem-table .btn:last-child:hover {
+    background: #b52b27; /* Rouge plus foncé */
+    transform: scale(1.05); /* Effet zoom */
+}
+
+
+
+
+
+
+.status {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+}
+.conteneur {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
+   
+}
+
+.adem-table {
+    width: 180%;
+}
+
+
+
+
+
+.btn-danger {
+    font-weight: bold;
+}
+
+.headingt {
+    position: relative;
+    left: 10px; 
+    
+}
+
+.headingt{
+    text-align: center;
+    padding-bottom: 2rem;
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    color: var(--black);
+    font-size: 5rem;
+    letter-spacing: .4rem;
+}.headingt span{
+    text-transform: uppercase;
+    color: var(--green);
+}
+.book .row1{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center; 
+}
+
+
+.book .row1 form{
+    flex: 1 1 35rem; 
+    max-width: 400px; 
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    padding: 1.5rem; 
+    border-radius: .5rem;
+    margin: auto; 
+}
+.book .row1 form h3{
+    color: var(--black);
+    padding-bottom: 1rem;
+    font-size: 3rem;
+}
+.book .row1 form .box{
+    width: 100%;
+    margin: .7rem 0;
+    border: var(--border);
+    border-radius: .5rem;
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+    padding: 1rem;
+}
+.book .row1 form .btn{
+    padding: 1rem 4rem;
+}
+
+
+
+/* Conteneur principal qui utilise flexbox pour le placement du formulaire et de l'image */
+.conteneur1 {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 20px; /* Espacement entre le formulaire et l'image */
+    flex-wrap: wrap; /* Permet aux éléments de passer sur la ligne si nécessaire */
+    margin-top: -40px;
+
+}
+
+
+.form-container {
+    flex: 1; 
+    min-width: 300px;
+    max-width: 500px; 
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+   
+}
+
+
+.image-container {
+    flex: 1; 
+    min-width: 300px; 
+    max-width: 500px; 
+    text-align: center; 
+}
+
+/* Ajustement de l'image */
+.image-container img {
+    width: 170%; 
+    height: auto; 
+    border-radius: 10px; 
+}
+
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+.custom-label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 12px;
+    display: block;
+}
+
+.pagination-container {
+    text-align: center; 
+    margin-top: 20px;   
+}
+
+.pagination-container .pagination {
+    display: inline-block;
+}
+
+.pagination a, .pagination span {
+    color: #16a085; 
+    float: none;
+    padding: 4px 8px;
+    text-decoration: none;
+    
+    margin: 0 2px;
+    background-color: #fff;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination .current {
+    background-color: #16a085;
+    color: #fff;
+    border-color: #16a085;
+}
+
+
+
+.search-form {
+    
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.search-form input.form-control {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    
+}
+
+
+.search-form button.btn-primary {
+    margin-top: 20px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    background-color:white;
+    color:  #16a085;
+    border: none;
+}
+
+.search-form button.btn-primary:hover {
+    background-color: #16a085;
+    color:  white;
+
+}
+
+
+
+
+
+
+
+
+
+
+

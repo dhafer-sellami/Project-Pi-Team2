@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Rendez-Vous{% endblock %}
+
+{% block section %}
+    <section class="book" id="book">
+        <h1 class="heading"><span>Modifier</span> Rendez-vous</h1>
+
+        <div class="row1">
+            
+            {{ include('rendez_vous/_form.html.twig', {'button_label': 'Update'}) }}
+
+               
+
+            <a href="{{ path('app_rendez_vous_index') }}" class="btn">
+                <i class="fa fa-arrow-left"></i> Retour
+            </a>
+        </div>
+    </section>
+{% endblock %}
+

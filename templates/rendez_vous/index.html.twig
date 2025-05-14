@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RendezVous index{% endblock %}
+
+{% block section %}
+    <section class="appointments" >
+        
+
+    <h1 class="headingt"><span>Liste des</span> Rendez-vous</h1>
+
+
+    <form method="get" action="{{ path('app_rendez_vous_index') }}" class="search-form">
+       {{ form_widget(searchForm) }}
+    </form>
+
+
+
+   
+
+
+        
+
+        
+    <div class="conteneur">
+    
+    <table class="adem-table">
+        <thead>
+            <tr>
+                <th><h1><strong>id</strong></h1></th>
+                <th><h1><strong>Date</strong></h1></th>
+                <th><h1><strong>Nom</strong></h1></th>
+                <th><h1><strong>Email</strong></h1></th>
+                <th><h1><strong>Num</strong></h1></th>
+                <th><h1><strong>Action</strong></h1></th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for rendez_vou in rendez_vouses %}
+                <tr>
+                    <td>{{ rendez_vou.id }}   
+                    <img src="{{ asset('Frontoffice/image/book-img.svg') }}" alt="" style="width: 100px; height: auto;">
+
+                    </td>
+                    <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d H:i:s') : '' }}</td>
+                    
+                    <td>{{ rendez_vou.etat }}</td>
+                    <td>{{ rendez_vou.num }}</td>
+                    <td>{{ rendez_vou.email }}</td>
+                    <td>
+                      <a href="{{ path('app_facture_new', {'rdvid': rendez_vou.id}) }}" class="btn">
+                        <i class="fas fa-edit"></i> Modifier prix
+                      </a>
+
+                      <a href="{{ path('app_rendez_vous_confirm', {'id': rendez_vou.id}) }}" class="btn">
+                       <i class="fas fa-check-circle"></i> Confirmer
+                      </a>
+
+                      {{ include('rendez_vous/_delete_form.html.twig', {'rendez_vou': rendez_vou}) }}
+
+                      <a href="{{ path('app_rendez_vous_edit', {'id': rendez_vou.id}) }}" class="btn">
+                       <i class="fas fa-check-circle"></i> modifier
+                      </a>
+                     
+                    </td>
+
+                    
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+   
+
+</div>
+
+
+
+<div class="pagination-container">
+    {{ knp_pagination_render(rendez_vouses) }}
+</div>
+
+
+
+    
+ 
+
+            
+       
+    </section>
+{% endblock %}
