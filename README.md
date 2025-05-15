@@ -1,4 +1,4 @@
-# Javafx-Team2
+# Project-Pi-Team2
 MediTrack Hospital Management
 ## Overview 
 This project , runs on symfony in vs code editor.
