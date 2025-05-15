@@ -5,6 +5,7 @@ This project , runs on symfony in vs code editor.
 ## Features ## 
 has module : user , prendre un rendez vous , medicaments , article , gestion des pdf
 ### techStack
+boostrap added , node.js
 ### Frontend 
 we used common template : html , css , javascript.
 ### Backend 
