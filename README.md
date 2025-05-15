@@ -4,6 +4,7 @@ MediTrack Hospital Management
 This project , runs on symfony in vs code editor.
 ## Features ## 
 has module : user , prendre un rendez vous , medicaments , article , gestion des pdf
+### techStack
 ### Frontend 
 we used common template : html , css , javascript.
 ### Backend 
